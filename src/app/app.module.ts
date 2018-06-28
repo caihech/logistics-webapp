@@ -1,29 +1,30 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './/app-routing.module';
-
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app.material.module';
+import { AppRoutingModule } from './app.routing.module';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
+
 
 
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { MessageComponent } from './message/message.component';
-
 
 @NgModule({
-  imports: [
-    BrowserModule, BrowserAnimationsModule, AppMaterialModule, AppRoutingModule
-  ], declarations: [
+  declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent,
-    UsersComponent,
-    MessageComponent
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    LayoutModule,
+    AppRoutingModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
