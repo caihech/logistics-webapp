@@ -8,6 +8,7 @@ import { UsersComponent } from './users/users.component';
 import { ConsignmentNoteComponent } from './consignment-note/consignment-note.component';
 import { Code404Component } from './code404/code404.component';
 
+
 const routes: Routes = [
 
   {
@@ -22,7 +23,9 @@ const routes: Routes = [
   ,
   {
     path: 'home',
-    component: HomeComponent, children: [
+    component: HomeComponent
+      , children: [
+      { path: '', component: HomeComponent },
       { path: 'users', component: UsersComponent },
       { path: 'consignmentNote', component: ConsignmentNoteComponent }
     ]
@@ -32,16 +35,6 @@ const routes: Routes = [
     path: '404',
     component: Code404Component
   }
-
-
-  // {
-  //   path: 'admin',
-  //   component: LayoutModule,
-  //   children: [
-  //     { path: 'home', loadChildren: './home/home.module#HomeModule' }
-  //     // { path: 'users', loadChildren: './users/users.module#UsersModule' }
-  //   ]
-  // },
   , { path: '**', redirectTo: '404', pathMatch: 'full' }
 
 ];
@@ -51,3 +44,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

@@ -1,16 +1,36 @@
-<app-header></app-header>
+<mat-toolbar color="accent">
+    <span>XXX物流管理系统</span>
 
-<div style=" width: 100%;float: left;">
-  <!-- Page Content goes here -->
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+
+    <span>
+        <button mat-button [matMenuTriggerFor]="menu">admin</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>个人信息</button>
+          <button mat-menu-item>修改密码</button>
+             <button mat-menu-item>退出</button>
+        </mat-menu>
+    </span>
+</mat-toolbar>
 
 
-  <app-navbar></app-navbar>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened style="width: 20%;">
 
-  <div style="width:70%; float: left;">
-      <router-outlet></router-outlet>
+        <mat-list role="list" color="accent">
+            <mat-list-item role="listitem">
+                <a [routerLink]="['users']">用户管理</a>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <a [routerLink]="['consignmentNote']">委托单管理</a></mat-list-item>
+        </mat-list>
+    </mat-drawer>
 
-  </div>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
 
-</div>
+</mat-drawer-container>
 
-<app-footer></app-footer>
+

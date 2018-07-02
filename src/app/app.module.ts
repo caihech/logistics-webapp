@@ -11,9 +11,6 @@ import { SharedModule } from './shared/shared.module';
 
 
 import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { ConsignmentNoteComponent } from './consignment-note/consignment-note.component';
@@ -23,9 +20,6 @@ import { Code404Component } from './code404/code404.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavbarComponent,
     HomeComponent,
     UsersComponent,
     ConsignmentNoteComponent,
