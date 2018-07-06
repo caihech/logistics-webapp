@@ -1,47 +1,44 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { ConsignmentNoteComponent } from './consignment-note/consignment-note.component';
-import { Code404Component } from './code404/code404.component';
-
+import {LoginComponent} from './login/login.component';
+import {AdminComponent} from './admin/admin.component';
+import {HomeComponent} from './home/home.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
 
 const routes: Routes = [
 
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  }
-  ,
-  {
-    path: 'home',
-    component: HomeComponent
-      , children: [
-      { path: '', component: HomeComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'consignmentNote', component: ConsignmentNoteComponent }
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
+    ,
+    {
+        path: '',
+        component: AdminComponent
+        , children: [
+        {path: 'home', component: HomeComponent}
     ]
-  }
-  ,
-  {
-    path: '404',
-    component: Code404Component
-  }
-  , { path: '**', redirectTo: '404', pathMatch: 'full' }
+    }
+    ,
+    {
+        path: 'error-page',
+        component: ErrorPageComponent
+    }
+    , {path: '**', redirectTo: 'error-page', pathMatch: 'full'}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
 
