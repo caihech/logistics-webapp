@@ -7,11 +7,14 @@ import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 
+/* import {UsersComponent} from './users/users.component'; */
+// import {UsersModule} from './users/users.module';
+
 const routes: Routes = [
 
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'users',
         pathMatch: 'full'
     },
     {
@@ -23,7 +26,10 @@ const routes: Routes = [
         path: '',
         component: AdminComponent
         , children: [
-        {path: 'home', component: HomeComponent}
+        {path: 'home', component: HomeComponent},
+        //   {path: 'users', component: UsersComponent},
+           {path: 'users', loadChildren: './users/users.module#UsersModule'}
+            // { path: 'users', component: UsersModule}
     ]
     }
     ,

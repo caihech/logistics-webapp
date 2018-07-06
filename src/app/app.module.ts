@@ -13,11 +13,12 @@ import {LoginComponent} from './login/login.component';
 import {AdminModule} from './admin/admin.module';
 import {ErrorPageComponent} from './error-page/error-page.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        ErrorPageComponent
+        ErrorPageComponent,
     ],
     imports: [
         BrowserModule,
