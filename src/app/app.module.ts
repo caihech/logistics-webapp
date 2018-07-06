@@ -12,6 +12,7 @@ import {SharedModule} from './shared/shared.module';
 import {LoginComponent} from './login/login.component';
 import {AdminModule} from './admin/admin.module';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import { PasswordDialogComponent } from './users/password-dialog/password-dialog.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ErrorPageComponent} from './error-page/error-page.component';
         AppComponent,
         LoginComponent,
         ErrorPageComponent,
+        PasswordDialogComponent,
     ],
     imports: [
         BrowserModule,
