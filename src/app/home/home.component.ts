@@ -9,14 +9,16 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 export class HomeComponent implements OnInit {
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+    applyFilter(filterValue: string) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
     constructor() {
     }
     @ViewChild(MatPaginator) paginator: MatPaginator;
     ngOnInit() {
         this.dataSource.paginator = this.paginator;
     }
-
+   
 }
 
 export interface PeriodicElement {
