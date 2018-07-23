@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {PasswordDialogComponent} from "./users/password-dialog/password-dialog.component";
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
         component: AdminComponent
         , children: [
         {path: 'home', component: HomeComponent},
-        {path: 'users', loadChildren: './users/users.module#UsersModule'}
+        {path: 'users', loadChildren: './users/users.module#UsersModule'},
+        {path: 'password', component: PasswordDialogComponent}
     ]
     }
     ,

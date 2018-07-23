@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 class DialogData {
 }
@@ -9,12 +9,9 @@ class DialogData {
     templateUrl: './password-dialog.component.html',
     styleUrls: ['./password-dialog.component.css']
 })
-export class PasswordDialogComponent implements OnInit {
+export class PasswordDialogComponent {
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    constructor( public dialogRef: MatDialogRef<PasswordDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     }
-
-    ngOnInit() {
-    }
-
 }

@@ -16,14 +16,10 @@ export class HeaderComponent implements OnInit {
     }
 
 
-    openPasswordDialog() {
-        this.dialog.open(PasswordDialogComponent, {
-            height: '400px',
-            width: '600px',
-            data: {
-                animal: 'panda'
-            }
+    openPasswordDialog(): void {
+        const dialogRef = this.dialog.open(PasswordDialogComponent, {});
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
         });
     }
-
 }
