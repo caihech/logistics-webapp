@@ -17,25 +17,28 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        this.login = this.loginService.getLogin()
-            .subscribe((data: Login) => this.login = {
-                id: data['id'],
-                code: data['code'],
-                ip: data['ip'],
-                username: data['username'],
-                password: data['password'],
-                address: data['address'],
-                client: data['client'],
-                token: data['token'],
-                tokenExpired: data['tokenExpired'],
-                status: data['status']
-            });
+        this.getInitLoginCode();
     }
 
     onSubmit() {
 
         console.info(this.login);
 
+    }
+
+
+    /**
+     * 获取验证码
+     */
+    getInitLoginCode() {
+        this.loginService.getLoginCode()
+            .subscribe(resp => {
+                //获取Header
+                const keys = resp.headers.keys();
+                // console.info(keys);
+                this.login = resp.body;
+                // console.info(resp.body);
+            });
     }
 
 
