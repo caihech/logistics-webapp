@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {PasswordDialogComponent} from '../../users/password-dialog/password-dialog.component';
 import {MatDialog} from '@angular/material';
+import {AdminComponent} from '../admin.component';
 
 @Component({
     selector: 'app-header',
@@ -8,6 +9,11 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+    // 获取模板内的第一个指定组件
+    @ViewChild(AdminComponent)
+    private adminComponent: AdminComponent;
+
 
     constructor(public dialog: MatDialog) {
     }
@@ -24,6 +30,11 @@ export class HeaderComponent implements OnInit {
                 animal: 'panda'
             }
         });
+    }
+
+
+    onOpendNavBar(e) {
+        this.adminComponent.onOpendNavBar(e);
     }
 
 }
