@@ -1,19 +1,17 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {PasswordDialogComponent} from '../../users/password-dialog/password-dialog.component';
 import {MatDialog} from '@angular/material';
-import {AdminComponent} from '../admin.component';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
+
+
 export class HeaderComponent implements OnInit {
 
-    // 获取模板内的第一个指定组件
-    @ViewChild(AdminComponent)
-    private adminComponent: AdminComponent;
-
+    @Output() private nav = new EventEmitter<string>();
 
     constructor(public dialog: MatDialog) {
     }
@@ -34,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
 
     onOpendNavBar(e) {
-        this.adminComponent.onOpendNavBar(e);
+        this.nav.emit('msg frin cgukd');
     }
 
 }
