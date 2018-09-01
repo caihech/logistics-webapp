@@ -7,12 +7,15 @@ import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
 
+    // {
+    //     path: '',
+    //     component: AdminComponent, children: [
+    //     {path: '', component: HomeComponent},
+    // ]
+    // },
     {
         path: '',
-        component: AdminComponent
-        , children: [
-        {path: '', component: HomeComponent},
-    ]
+        component: HomeComponent
     }
 ];
 

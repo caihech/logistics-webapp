@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {PasswordDialogComponent} from '../../users/password-dialog/password-dialog.component';
 import {MatDialog} from '@angular/material';
 
 @Component({
@@ -21,13 +20,7 @@ export class HeaderComponent implements OnInit {
 
 
     openPasswordDialog() {
-        this.dialog.open(PasswordDialogComponent, {
-            height: '400px',
-            width: '600px',
-            data: {
-                animal: 'panda'
-            }
-        });
+
     }
 
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Login, LoginService} from './login.service';
+// import {Login, LoginService} from './login.service';
 
 @Component({
     selector: 'app-login',
@@ -8,21 +8,21 @@ import {Login, LoginService} from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-    login: Login;
+    // login: Login;
 
-    constructor(private loginService: LoginService) {
+    constructor() {
 
       //  this.login = {username: undefined};
     }
 
     ngOnInit() {
 
-        this.getInitLoginCode();
+    //    this.getInitLoginCode();
     }
 
     onSubmit() {
 
-        console.info(this.login);
+     //   console.info(this.login);
 
     }
 
@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
      * 获取验证码
      */
     getInitLoginCode() {
-        this.loginService.getLoginCode()
-            .subscribe(resp => {
-                //获取Header
-                const keys = resp.headers.keys();
-                // console.info(keys);
-                this.login = resp.body;
-                // console.info(resp.body);
-            });
+        // this.loginService.getLoginCode()
+        //     .subscribe(resp => {
+        //         //获取Header
+        //         const keys = resp.headers.keys();
+        //         // console.info(keys);
+        //         this.login = resp.body;
+        //         // console.info(resp.body);
+        //     });
     }
 
 
