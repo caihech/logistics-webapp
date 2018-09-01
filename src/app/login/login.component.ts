@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private loginService: LoginService) {
 
-        this.login = {username: undefined};
+      //  this.login = {username: undefined};
     }
 
     ngOnInit() {
