@@ -17,6 +17,13 @@ import {UserDetailComponent} from './users/user-detail/user-detail.component';
 import {ConsignmentNotesComponent} from './consignment-notes/consignment-notes.component';
 import {ConsignmentNoteAddComponent} from './consignment-notes/consignment-note-add/consignment-note-add.component';
 import {ConsignmentNoteDetailComponent} from './consignment-notes/consignment-note-detail/consignment-note-detail.component';
+
+import {VehiclesComponent} from './vehicles/vehicles.component';
+import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
+import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.component';
+
+
+
 @NgModule({
     imports: [
         RouterModule,
@@ -34,6 +41,9 @@ import {ConsignmentNoteDetailComponent} from './consignment-notes/consignment-no
         ConsignmentNotesComponent,
         ConsignmentNoteAddComponent,
         ConsignmentNoteDetailComponent,
+        VehiclesComponent,
+        VehicleAddComponent,
+        VehicleDetailComponent
     ],
     providers: [],
     exports: []
