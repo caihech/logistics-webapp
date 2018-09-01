@@ -24,7 +24,7 @@ import {LoginService} from './login/login.service';
         AppComponent,
         LoginComponent,
         ErrorPageComponent,
-        PasswordDialogComponent,
+        PasswordDialogComponent
     ],
     imports: [
         BrowserModule,

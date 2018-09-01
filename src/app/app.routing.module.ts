@@ -1,39 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-
 import {LoginComponent} from './login/login.component';
-import {AdminComponent} from './admin/admin.component';
-import {HomeComponent} from './home/home.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 
 
 const routes: Routes = [
 
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
-    {
-        path: 'login',
-        component: LoginComponent
-    }
-    ,
-    {
-        path: '',
-        component: AdminComponent
-        , children: [
-        {path: 'home', component: HomeComponent},
-        {path: 'users', loadChildren: './users/users.module#UsersModule'}
-    ]
-    }
-    ,
-    {
-        path: 'error-page',
-        component: ErrorPageComponent
-    }
-    , {path: '**', redirectTo: 'error-page', pathMatch: 'full'}
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'login', component: LoginComponent},
+    {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
+    {path: 'error-page', component: ErrorPageComponent},
+    {path: '**', redirectTo: 'error-page', pathMatch: 'full'}
 
 ];
 
