@@ -13,7 +13,6 @@ import {SharedModule} from './shared/shared.module';
 import {LoginComponent} from './login/login.component';
 import {AdminModule} from './admin/admin.module';
 import {ErrorPageComponent} from './error-page/error-page.component';
-import {PasswordDialogComponent} from './users/password-dialog/password-dialog.component';
 
 
 import {LoginService} from './login/login.service';
@@ -23,8 +22,7 @@ import {LoginService} from './login/login.service';
     declarations: [
         AppComponent,
         LoginComponent,
-        ErrorPageComponent,
-        PasswordDialogComponent
+        ErrorPageComponent
     ],
     imports: [
         BrowserModule,
