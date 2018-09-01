@@ -7,56 +7,236 @@
     <mat-divider></mat-divider>
 
 
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
+    <form class="example-form">
 
-            <div class="example-container">
-                <mat-form-field>
-                    <input matInput placeholder="Input">
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="托运单编号">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="到站">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="货号">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="托运日期">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="到货地址">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="发货地址">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="广州查询电话">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="咨询电话">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="投诉电话">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="托运人/单位">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="托运人电话/单位电话">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="收货人/单位">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="收货人电话/单位电话">
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="14">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="货物名称">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="14">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="包装">
+                </mat-form-field>
+            </div>
+            <div class="item item-3" fxFlex="14">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="重量">
                 </mat-form-field>
             </div>
 
+            <div class="item item-4" fxFlex="14">
 
-        </mat-grid-tile>
-        <mat-grid-tile>
-
-            <div class="example-container">
-                <mat-form-field>
-                    <input matInput placeholder="Input">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="体积">
                 </mat-form-field>
             </div>
 
+            <div class="item item-5" fxFlex="14">
 
-        </mat-grid-tile>
-        <mat-grid-tile>
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="件数">
+                </mat-form-field>
+            </div>
+            <div class="item item-6" fxFlex="14">
 
-            <div class="example-container">
-                <mat-form-field>
-                    <input matInput placeholder="Input">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="保险">
+                </mat-form-field>
+            </div>
+            <div class="item item-7" fxFlex="14">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="保费">
                 </mat-form-field>
             </div>
 
-
-        </mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
+        </div>
 
 
-    <!--<div class="example-container">-->
-        <!--<mat-form-field>-->
-            <!--<input matInput placeholder="Enter your email" [formControl]="email" required>-->
-            <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
-        <!--</mat-form-field>-->
-    <!--</div>-->
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="16">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="月结">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="16">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="回单付">
+                </mat-form-field>
+            </div>
+            <div class="item item-3" fxFlex="16">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="现金">
+                </mat-form-field>
+            </div>
+            <div class="item item-4" fxFlex="16">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="提付">
+                </mat-form-field>
+            </div>
+            <div class="item item-5" fxFlex="16">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="短途运费">
+                </mat-form-field>
+            </div>
+            <div class="item item-6" fxFlex="16">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="合计">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="50">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="代收货款">
+                </mat-form-field>
+            </div>
+            <div class="item item-2" fxFlex="50">
+
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="送货地址">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="100">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="备注">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayoutGap="10px">
+            <div class="item item-1" fxFlex="33">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="提货人签字">
+                </mat-form-field>
+            </div>
+            <div class="item item-1" fxFlex="33">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="身份证号">
+                </mat-form-field>
+            </div>
+            <div class="item item-1" fxFlex="33">
+                <mat-form-field style="width:100%;">
+                    <input matInput placeholder="发货人签字">
+                </mat-form-field>
+            </div>
+        </div>
 
 
-    <div class="example-container">
-        <mat-form-field hintLabel="Max 50 characters">
-            <input matInput #input maxlength="10" placeholder="Enter some input">
-            <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-        </mat-form-field>
-
-    </div>
+    </form>
 
 
 </mat-card>
