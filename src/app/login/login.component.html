@@ -14,26 +14,25 @@
             <h4 class="login-header">用户登录</h4>
             <div class="content">
                 <div class="form-group">
-                    <input type="text" required class="form-control">
+                    <input type="text" required class="form-control" [(ngModel)]="login.username">
                     <label class="form-label">用户名</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" required class="form-control">
+                    <input type="text" required class="form-control" [(ngModel)]="login.password">
                     <label class="form-label">密 码</label>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" required class="form-control" style="width: 60%">
+                    <input type="text" required class="form-control" style="width: 60%" [(ngModel)]="login.code">
                     <label class="form-label">验证码</label>
                 </div>
 
 
                 <div class="form-group">
-                    <button class="login-button">
+                    <button class="login-button" (click)='onSubmit()'>
                         <span class="icon-login">登 录</span>
                     </button>
                 </div>
-
 
 
                 <div class="option">
