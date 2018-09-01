@@ -14,6 +14,9 @@ import {UsersComponent} from './users/users.component';
 import {UserAddComponent} from './users/user-add/user-add.component';
 import {UserDetailComponent} from './users/user-detail/user-detail.component';
 
+import {ConsignmentNotesComponent} from './consignment-notes/consignment-notes.component';
+import {ConsignmentNoteAddComponent} from './consignment-notes/consignment-note-add/consignment-note-add.component';
+import {ConsignmentNoteDetailComponent} from './consignment-notes/consignment-note-detail/consignment-note-detail.component';
 @NgModule({
     imports: [
         RouterModule,
@@ -28,6 +31,9 @@ import {UserDetailComponent} from './users/user-detail/user-detail.component';
         UsersComponent,
         UserAddComponent,
         UserDetailComponent,
+        ConsignmentNotesComponent,
+        ConsignmentNoteAddComponent,
+        ConsignmentNoteDetailComponent,
     ],
     providers: [],
     exports: []
