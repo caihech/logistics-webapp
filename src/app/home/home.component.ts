@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.dataSource.paginator = this.paginator;
     }
-   
+
 }
 
 export interface PeriodicElement {
