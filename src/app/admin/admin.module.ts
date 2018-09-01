@@ -10,6 +10,9 @@ import {FooterComponent} from './footer/footer.component';
 
 import {HomeComponent} from './home/home.component';
 
+import {UsersComponent} from './users/users.component';
+import {UserAddComponent} from './users/user-add/user-add.component';
+import {UserDetailComponent} from './users/user-detail/user-detail.component';
 
 @NgModule({
     imports: [
@@ -21,7 +24,10 @@ import {HomeComponent} from './home/home.component';
         HeaderComponent,
         NavigationComponent,
         FooterComponent,
-        HomeComponent
+        HomeComponent,
+        UsersComponent,
+        UserAddComponent,
+        UserDetailComponent,
     ],
     providers: [],
     exports: []
