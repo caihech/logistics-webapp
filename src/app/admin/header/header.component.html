@@ -5,10 +5,10 @@
 
     <!--<span>My Application</span>-->
 
-    <button mat-button [matMenuTriggerFor]="menu">admin</button>
+    <button mat-button [matMenuTriggerFor]="menu">{{username}}</button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item>修改密码</button>
-        <button mat-menu-item>退出</button>
+        <button mat-menu-item (click)="onExitLogin()">退出</button>
     </mat-menu>
 
 

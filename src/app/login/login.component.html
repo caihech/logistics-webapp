@@ -1,53 +1,64 @@
-<!--<div fxLayout="row" class="login-main">-->
+<div fxLayout="row" class="login-main">
 
-    <!--<div fxFlex="50"></div>-->
-
-    <!--<div fxFlex>-->
-        <!--<div class="container">-->
-
-            <!--<div class="logo">-->
-                <!--<div class="logo-block-top">-->
-                <!--</div>-->
-                <!--<div class="logo-block-bottom">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<h4 class="login-header">用户登录</h4>-->
-            <!--<div class="content">-->
-                <!--<div class="form-group">-->
-                    <!--<input type="text" required class="form-control" [(ngModel)]="login.username">-->
-                    <!--<label class="form-label">用户名</label>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<input type="text" required class="form-control" [(ngModel)]="login.password">-->
-                    <!--<label class="form-label">密 码</label>-->
-                <!--</div>-->
-
-                <!--<div class="form-group">-->
-                    <!--<input type="text" required class="form-control" style="width: 60%" [(ngModel)]="login.code">-->
-                    <!--<label class="form-label">验证码</label>-->
-                <!--</div>-->
+    <div fxFlex="50"></div>
 
 
-                <!--<div class="form-group">-->
-                    <!--<button class="login-button" (click)='onSubmit()'>-->
-                        <!--<span class="icon-login">登 录</span>-->
-                    <!--</button>-->
-                <!--</div>-->
+        <div fxFlex>
+            <div class="container">
+
+                <div class="logo">
+                    <div class="logo-block-top">
+                    </div>
+                    <div class="logo-block-bottom">
+                    </div>
+                </div>
+                <h4 class="login-header">用户登录</h4>
+                <div class="content">
+                    <div class="form-group">
+                        <input type="text" required class="form-control" [(ngModel)]="loginModel.username">
+                        <label class="form-label">用户名</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" required class="form-control" [(ngModel)]="loginModel.password">
+                        <label class="form-label">密 码</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" required class="form-control" style="width: 75%"
+                               [(ngModel)]="code">
+                        <label class="form-label">验证码</label>
 
 
-                <!--<div class="option">-->
-                    <!--<div class="option-left"><a href="">忘记密码</a></div>-->
-                    <!--<div class="option-right">-->
-                        <!--<span class="md-checkbox" checked="checked"></span>-->
-                        <!--<label class="form-label">记住密码</label>-->
+                        <div class="lgoinCode" (click)="getCodeService()">
+                            <span>{{loginModel.code}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="login-button" (click)='onSubmit()'>
+                            <span class="icon-login">登 录</span>
+                        </button>
+                    </div>
+
+                    <!--<div class="option">-->
+                        <!--<div class="option-left"><a href="">忘记密码</a></div>-->
+                        <!--<div class="option-right">-->
+                            <!--<span class="md-checkbox" checked="checked"></span>-->
+                            <!--<label class="form-label">记住账号</label>-->
+                        <!--</div>-->
                     <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                </div>
 
 
-        <!--</div>-->
-    <!--</div>-->
+            </div>
+        </div>
 
-    <!--<div fxFlex="50"></div>-->
 
-<!--</div>-->
+    <div fxFlex="50"></div>
+
+</div>
+
+
+
+

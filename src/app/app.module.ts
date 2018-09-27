@@ -14,7 +14,7 @@ import {LoginComponent} from './login/login.component';
 import {AdminModule} from './admin/admin.module';
 import {ErrorPageComponent} from './error-page/error-page.component';
 
-
+import {SharedService} from './shared/shared.service';
 import {LoginService} from './login/login.service';
 
 
@@ -34,7 +34,7 @@ import {LoginService} from './login/login.service';
         AdminModule
 
     ],
-    providers: [LoginService],
+    providers: [SharedService,LoginService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
