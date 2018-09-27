@@ -1,0 +1,41 @@
+<mat-form-field class="input-search">
+  <input matInput (keyup)="applyFilter($event.target.value)"
+         placeholder="搜索">
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="text-align-center"> 序号</th>
+      <td mat-cell *matCellDef="let element" class="text-align-center padding-left-10"> {{element.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="serialNumber">
+      <th mat-header-cell *matHeaderCellDef class="text-align-center"> 托运单号</th>
+      <td mat-cell *matCellDef="let element" class="text-align-center padding-left-10"> {{element.serialNumber}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="imageQuality">
+      <th mat-header-cell *matHeaderCellDef class="text-align-center"> 托运单日期</th>
+      <td mat-cell *matCellDef="let element" class="text-align-center padding-left-10">{{element.createTime| date:'yyyy/MM/dd'}}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="deviceName">
+      <th mat-header-cell *matHeaderCellDef class="device-name-width" class="text-align-center">托运人/单位</th>
+      <td mat-cell *matCellDef="let element" class="text-align-center" class="text-align-center padding-left-10"> {{element.deviceName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="app">
+      <th mat-header-cell *matHeaderCellDef class="select-color" class="text-align-center"> 托运货物名称</th>
+      <td mat-cell *matCellDef="let element" class="text-align-center" class="text-align-center padding-left-10"> {{element.app}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

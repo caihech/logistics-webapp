@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+}
+
+.input-search::selection {
+    color: #000 !important;
+}
+
+.input-search::-moz-selection {
+    color: #000;
+}
+
+.text-align-center {
+    text-align: center !important;
+}
+
+.device-name-width {
+    width: 8%;
+}
+
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.text-align-center {
+    text-align: center !important;
+}
+
+.width-30 {
+    width: 30% !important;
+}
