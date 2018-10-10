@@ -32,6 +32,16 @@
 
     <!-- nav -->
     <mat-drawer class="app-nav" mode="side" [(opened)]="openedNavBar">
+        <mat-nav-list>
+            <a [routerLink]="['/admin']" routerLinkActive='active' mat-list-item>首页</a>
+            <mat-divider></mat-divider>
+            <a [routerLink]="['/admin/users']" mat-list-item>用户管理</a>
+            <mat-divider></mat-divider>
+            <a [routerLink]="['/admin/consignmentnotes']" mat-list-item>托运单管理</a>
+            <mat-divider></mat-divider>
+            <a [routerLink]="['/admin/vehicles']" mat-list-item>马单管理</a>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
     </mat-drawer>
 
     <!-- content -->
