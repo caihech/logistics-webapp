@@ -1,11 +1,45 @@
-<mat-drawer-container class="example-container">
+<!-- header -->
+<mat-toolbar class="app-header" color="primary">
 
-    <mat-drawer #drawer mode="side" [(opened)]="openedNavBar">
-        <app-navigation></app-navigation>
+    <div style="width: 80%;float: left;">
+        <button mat-button (click)="onOpendNavBar()" style="font-size:20px">
+            后台系统
+        </button>
+    </div>
+
+    <div style="width: 20%;float: left;">
+        <button mat-button [matMenuTriggerFor]="menu" style="font-size: 16px;float: right;">
+            <mat-icon >person</mat-icon>
+            {{username}}
+        </button>
+
+        <!--<button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">person</i>{{username}}</button>-->
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item style="font-size: 16px;">
+                <mat-icon>assignment</mat-icon>
+                修改密码
+            </button>
+            <hr>
+            <button mat-menu-item style="font-size: 16px;" (click)="onExitLogin()">
+                <mat-icon>reply</mat-icon>
+                退出
+            </button>
+        </mat-menu>
+    </div>
+
+</mat-toolbar>
+
+<!-- main -->
+<mat-drawer-container class="app-container">
+
+    <!-- nav -->
+    <mat-drawer class="app-nav" mode="side" [(opened)]="openedNavBar">
     </mat-drawer>
 
+    <!-- content -->
     <mat-drawer-content>
-        <app-header (nav)="onOpendNavBar($event)"></app-header>
         <router-outlet></router-outlet>
     </mat-drawer-content>
+
 </mat-drawer-container>
+
