@@ -28,9 +28,14 @@ export class SharedService {
     static getLoginHttpHeader = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Token ' + JSON.parse(localStorage.getItem('token'))
+            'Authorization': SharedService.getAuthorizationToken()
         })
     };
+
+
+    static getAuthorizationToken(): string {
+        return 'Token ' + JSON.parse(localStorage.getItem('token'));
+    }
 
 
     /**
