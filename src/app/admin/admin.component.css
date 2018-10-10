@@ -12,6 +12,10 @@
     background-color: red;
 }
 
+.toolbar-seprator {
+    flex: 1 1 auto;
+}
+
 .app-nav {
     position: absolute;
     /*height: calc(100vh - 64px);*/
