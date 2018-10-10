@@ -4,7 +4,6 @@ import {SharedModule} from '../shared/shared.module';
 
 
 import {AdminComponent} from './admin.component';
-import {HeaderComponent} from './header/header.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {FooterComponent} from './footer/footer.component';
 
@@ -31,7 +30,6 @@ import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.c
     ],
     declarations: [
         AdminComponent,
-        HeaderComponent,
         NavigationComponent,
         FooterComponent,
         HomeComponent,
