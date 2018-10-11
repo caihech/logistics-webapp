@@ -26,10 +26,10 @@
 
 .app-content{
     position: absolute;
-    padding: 30px;
+    /*padding: 30px;*/
     margin: auto;
     background-color: red;
-    /*width: ;*/
+    width: 100%;
 }
 
 .active{
