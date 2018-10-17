@@ -17,7 +17,7 @@ export class UsersService {
      * 获取用户信息集合 需要登录
      * @returns {Observable<Object>}
      */
-    getUsers(): Observable<Object> {
+    getUsers(): Observable<any> {
         return this.http.get(SharedService.getUrl + '/users', SharedService.getLoginHttpHeader);
     }
 }
