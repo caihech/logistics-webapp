@@ -46,16 +46,4 @@ export class AdminComponent implements OnInit {
         this.router.navigate(['/login']);
     }
 
-    /**
-     * 左侧导航开关
-     * @param e
-     */
-    onOpendNavBar(e) {
-        if (this.openedNavBar) {
-            this.openedNavBar = false;
-        } else {
-            this.openedNavBar = true;
-        }
-    }
-
 }

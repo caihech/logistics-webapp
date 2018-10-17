@@ -1,7 +1,7 @@
 <!-- header -->
 <mat-toolbar class="app-header mat-elevation-z6" color="primary">
 
-    <button mat-button (click)="onOpendNavBar()" style="font-size:20px">
+    <button mat-button  style="font-size:20px">
         后台系统
     </button>
 
@@ -31,7 +31,7 @@
 <mat-drawer-container class="app-container">
 
     <!-- nav -->
-    <mat-drawer class="app-nav mat-elevation-z6" mode="side" [(opened)]="openedNavBar">
+    <mat-drawer #drawer class="app-nav mat-elevation-z6" mode="side"  [(opened)]="openedNavBar">
         <mat-nav-list>
             <a [routerLink]="['/admin']" routerLinkActive='active' mat-list-item>首页</a>
             <mat-divider></mat-divider>
