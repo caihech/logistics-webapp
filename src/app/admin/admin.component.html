@@ -14,7 +14,7 @@
 
     <!--<button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">person</i>{{username}}</button>-->
     <mat-menu #menu="matMenu">
-        <button mat-menu-item style="font-size: 16px;">
+        <button mat-menu-item style="font-size: 16px;"  (click)="openPasswordDialog()">
             <mat-icon>assignment</mat-icon>
             修改密码
         </button>
@@ -50,4 +50,5 @@
     </mat-drawer-content>
 
 </mat-drawer-container>
+
 

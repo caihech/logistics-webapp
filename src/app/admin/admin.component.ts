@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../shared/shared.service';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {PasswordDialogComponent} from '../admin/users/password-dialog/password-dialog.component';
 
 @Component({
     selector: 'app-admin',
@@ -12,7 +14,8 @@ export class AdminComponent implements OnInit {
     openedNavBar = true;
     username: String = '';
 
-    constructor(private router: Router) {
+
+    constructor(private router: Router, private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -44,6 +47,23 @@ export class AdminComponent implements OnInit {
         SharedService.removeStorageItem('username');
         SharedService.removeStorageItem('token');
         this.router.navigate(['/login']);
+    }
+
+
+    /**
+     * 打开 修改密码 窗体
+     */
+    openPasswordDialog(): void {
+
+        const dialogRef = this.dialog.open(PasswordDialogComponent, {
+            disableClose: true,
+            data: {username: this.username}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed.' + result);
+        });
+
     }
 
 }

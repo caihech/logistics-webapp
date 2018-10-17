@@ -18,7 +18,7 @@ import {ConsignmentNoteDetailComponent} from './consignment-notes/consignment-no
 import {VehiclesComponent} from './vehicles/vehicles.component';
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
 import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.component';
-
+import {PasswordDialogComponent} from './users/password-dialog/password-dialog.component';
 
 
 @NgModule({
@@ -37,8 +37,10 @@ import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.c
         ConsignmentNoteDetailComponent,
         VehiclesComponent,
         VehicleAddComponent,
-        VehicleDetailComponent
+        VehicleDetailComponent,
+        PasswordDialogComponent
     ],
+    entryComponents: [PasswordDialogComponent],
     providers: [],
     exports: []
 })
