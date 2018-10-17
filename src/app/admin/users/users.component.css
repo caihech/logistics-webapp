@@ -1,8 +1,7 @@
-.usersDiv {
 
-    margin: 30px;
-    width: 100%;
-
+.users{
+    width: 97%;
+    margin: 1% auto;
 }
 
 .usersTable {
