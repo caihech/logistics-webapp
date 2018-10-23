@@ -56,6 +56,8 @@ export class AdminComponent implements OnInit {
     openPasswordDialog(): void {
 
         const dialogRef = this.dialog.open(PasswordDialogComponent, {
+            width: '400px',
+            height: '300px',
             disableClose: true,
             data: {username: this.username}
         });

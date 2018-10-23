@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class PasswordDialogComponent implements OnInit {
 
-
+    hide = true;
     username: String = '';
 
 
