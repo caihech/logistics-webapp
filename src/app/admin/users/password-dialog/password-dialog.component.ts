@@ -11,18 +11,14 @@ export class PasswordDialogComponent implements OnInit {
 
     username: String = '';
 
-    originalPassword = new FormControl('', [Validators.required]);
-
     userPasswordModel = new UserPasswordModel('', '', '');
 
 
-    constructor(private dialogRef: MatDialogRef<PasswordDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) private data: PasswordDialogData) {
+    constructor(private dialogRef: MatDialogRef<PasswordDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: PasswordDialogData) {
     }
 
     ngOnInit() {
         this.username = this.data.username;
-
     }
 
     onNoClick(): void {
@@ -39,14 +35,16 @@ export class PasswordDialogComponent implements OnInit {
     /**
      * 提交表单
      */
-    onSubmitForm() {
-        console.info(this.userPasswordModel);
-    }
+    // onSubmitForm() {
+    //     console.info(this.userPasswordModel);
+    // }
 }
 
 export interface PasswordDialogData {
     username: string;
 }
+
+
 
 export class UserPasswordModel {
 
