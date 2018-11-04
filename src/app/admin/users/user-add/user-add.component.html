@@ -1,3 +1,161 @@
-<p>
-  user-add works!
-</p>
+<mat-card>
+
+    <mat-card-title>
+        添加用户
+        <button mat-raised-button style="float: right;" routerLink="/admin/users">
+            返回
+        </button>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+
+        <form [formGroup]="userFormModel" (submit)="onSubmitForm()" style="margin-top: 30px;">
+
+
+            <div class="example-container">
+                <!-- username -->
+                <mat-form-field fxFlex="50">
+                    <input matInput placeholder="用户名" formControlName="username" maxlength="16" required>
+                    <mat-hint align="end">{{userFormModel.get('username').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+                <!-- password -->
+                <mat-form-field fxFlex="50">
+                    <input matInput placeholder="密码" formControlName="password" maxlength="16" required>
+                    <mat-hint align="end">{{userFormModel.get('password').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- email -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="电子邮箱" formControlName="email" maxlength="32" required>
+                    <mat-hint align="end">{{userFormModel.get('email').value?.length || 0}}/32</mat-hint>
+                </mat-form-field>
+
+
+                <!-- mobilephone -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="移动电话" formControlName="mobilephone" maxlength="11"
+                           required>
+                    <mat-hint align="end">{{userFormModel.get('mobilephone').value?.length || 0}}/11</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- fullname -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8">
+                    <mat-hint align="end">{{userFormModel.get('fullname').value?.length || 0}}/8</mat-hint>
+                </mat-form-field>
+
+
+                <!--<mat-form-field fxFlex="50">-->
+                <!--<input type="text" matInput placeholder="性别" formControlName="" maxlength="16"-->
+                <!--required>-->
+                <!--<mat-hint align="end">{{userFormModel.get('mobilephone').value?.length || 0}}/16</mat-hint>-->
+                <!--</mat-form-field>-->
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- birthday -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="生日" formControlName="birthday" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('birthday').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+
+                <!-- companyName -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="所属公司" formControlName="companyName" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('companyName').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- postalCode -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="邮政编码" formControlName="postalCode" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('postalCode').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+
+                <!-- address -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="通讯地址" formControlName="address" maxlength="16">
+                    <mat-hint align=" end">{{userFormModel.get('address').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- fax -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="传真" formControlName="fax" maxlength="16"
+                    >
+                    <mat-hint align="end">{{userFormModel.get('fax').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+
+                <!-- telephone -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="办公电话" formControlName="telephone" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('telephone').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- 微信id -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="微信id" formControlName="wechat" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('wechat').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+
+                <!-- 微博id -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="微博id" formControlName="weibo" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('weibo').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- remark -->
+                <mat-form-field fxFlex="50">
+                    <input type="text" matInput placeholder="备注" formControlName="remark" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('remark').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!userFormModel.valid">保存</button>
+                <button mat-raised-button type="submit">清空</button>
+            </div>
+
+
+        </form>
+    </mat-card-content>
+
+</mat-card>
