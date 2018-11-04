@@ -19,12 +19,14 @@ import {VehiclesComponent} from './vehicles/vehicles.component';
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
 import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.component';
 import {PasswordDialogComponent} from './users/password-dialog/password-dialog.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
     imports: [
         RouterModule,
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AdminComponent,
