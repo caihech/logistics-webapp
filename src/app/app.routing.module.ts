@@ -35,7 +35,7 @@ const routes: Routes = [
 
         {path: 'users', component: UsersComponent},
         {path: 'user/add', component: UserAddComponent},
-        {path: 'user/detail', component: UserDetailComponent},
+        {path: 'user/detail/:id', component: UserDetailComponent},
 
         {path: 'consignmentnotes', component: ConsignmentNotesComponent},
         {path: 'consignmentnote/add', component: ConsignmentNoteAddComponent},

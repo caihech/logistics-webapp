@@ -2,3 +2,17 @@
     width: 100%;
     margin: 0 auto;
 }
+
+.usersTable{
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.usersTable th{
+    text-align: center;
+}
+
+.usersTable tr{
+    text-align: center;
+}
