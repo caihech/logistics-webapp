@@ -20,6 +20,7 @@ import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component'
 import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.component';
 import {PasswordDialogComponent} from './users/password-dialog/password-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {JsogService} from 'jsog-typescript';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         PasswordDialogComponent
     ],
     entryComponents: [PasswordDialogComponent],
-    providers: [],
+    providers: [JsogService],
     exports: []
 })
 
