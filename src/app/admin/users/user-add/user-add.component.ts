@@ -4,6 +4,7 @@ import {Observable} from "rxjs/index";
 import {SharedReg} from '../../../shared/sharedReg';
 import {RolesService} from '../../roles/roles.service';
 import {JsogService} from 'jsog-typescript';
+import {UsersService} from '../users.service';
 
 @Component({
     selector: 'app-user-add',
@@ -19,23 +20,28 @@ export class UserAddComponent implements OnInit {
     roles = [];
 
 
-    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private jsog: JsogService) {
+    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService) {
 
         this.userFormModel = fb.group({
-                username: ['', [Validators.required, this.sharedReg.usernameRegValidator]],
-                password: ['', [Validators.required, this.sharedReg.passwordRegValidator]],
-                mobilephone: ['', [Validators.required, this.sharedReg.mobilephoneRegValidator]],
-                email: [''],
-                fullname: ['', [Validators.required]],
-                birthday: [''],
-                companyName: ['', [Validators.required]],
-                postalCode: [''],
-                address: [''],
-                fax: [''],
-                telephone: [''],
-                wechat: [''],
-                weibo: [''],
-                remark: ['']
+                username: [, [Validators.required, this.sharedReg.usernameRegValidator]],
+                password: [, [Validators.required, this.sharedReg.passwordRegValidator]],
+                mobilephone: [, [Validators.required, this.sharedReg.mobilephoneRegValidator]],
+                email: [],
+                fullname: [, [Validators.required]],
+                birthday: [],
+                companyName: [, [Validators.required]],
+                postalCode: [],
+                address: [],
+                fax: [],
+                telephone: [],
+                wechat: [],
+                weibo: [],
+                remark: [],
+                sex: [0],
+                valid: [1],
+                role: fb.group(
+                    {id: [1]}
+                )
             }
         );
 
@@ -52,8 +58,18 @@ export class UserAddComponent implements OnInit {
      */
     onSubmitForm() {
         console.info(this.userFormModel.value);
+        var _that = this;
+        if (this.userFormModel.valid) {
 
+            console.info(this.userFormModel.value);
 
+            _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
+                console.info(res);
+            }, (error) => {
+                console.info(error);
+            });
+
+        }
     }
 
     /**
@@ -63,15 +79,7 @@ export class UserAddComponent implements OnInit {
         var _that = this;
         this.rolesService.getRoles().subscribe(
             function (rep) {
-                console.info(rep);
-                let response = _that.jsog.deserialize(rep);
-                for (var i = 0; i < response.length; i++) {
-                    var tempData = {id: 0, name: ''};
-                    tempData.id = response[i].id;
-                    tempData.name = response[i].name;
-                    _that.roles.push(tempData);
-                }
-                console.info(_that.roles);
+                _that.roles = rep;
             }, function (error) {
                 console.error(error);
             }

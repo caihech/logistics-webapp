@@ -21,10 +21,6 @@ export class UsersService {
     }
 
 
-    putPassword() {
-
-    }
-
     /**
      * 更新当前用户密码
      * @param {Object} jsonData
@@ -32,5 +28,14 @@ export class UsersService {
      */
     putCurrentUserPassword(jsonData: Object): Observable<Object> {
         return this.http.put(SharedService.getUrl + '/users/password', jsonData, SharedService.getLoginHttpHeader);
+    }
+
+    /**
+     * 添加用户
+     * @param {Object} jsonData
+     * @returns {Observable<Object>}
+     */
+    postUser(jsonData: Object): Observable<Object> {
+        return this.http.post(SharedService.getUrl + '/users', jsonData, SharedService.getLoginHttpHeader);
     }
 }

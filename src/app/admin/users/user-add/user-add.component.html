@@ -81,22 +81,21 @@
 
 
             <div class="example-container">
+
+
                 <!-- 角色 -->
-                <mat-form-field fxFlex="50">
-                    <mat-select [(value)]="selected" placeholder="用户角色" required>
-                        <mat-option value="1"></mat-option>
+                <mat-form-field fxFlex="50" formGroupName="role">
+                    <mat-select formControlName="id" placeholder="用户角色" required>
+                        <mat-option [value]=item.id *ngFor="let item of  roles">{{item.name}}</mat-option>
                     </mat-select>
-
-
-
                 </mat-form-field>
 
 
                 <!-- 是否有效 -->
                 <mat-form-field fxFlex="50">
-                    <mat-select [(value)]="selected" placeholder="用户状态" required>
-                        <mat-option value="0">无效</mat-option>
-                        <mat-option value="1">有效</mat-option>
+                    <mat-select formControlName="valid" placeholder="用户状态" required>
+                        <mat-option [value]=0>无效</mat-option>
+                        <mat-option [value]=1>有效</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -106,10 +105,10 @@
 
                 <!-- 性别 -->
                 <mat-form-field fxFlex="50">
-                    <mat-select [(value)]="selected" placeholder="性别">
-                        <mat-option value="0">保密</mat-option>
-                        <mat-option value="1">男</mat-option>
-                        <mat-option value="2">女</mat-option>
+                    <mat-select formControlName="sex" placeholder="性别">
+                        <mat-option [value]=0>保密</mat-option>
+                        <mat-option [value]=1>男</mat-option>
+                        <mat-option [value]=2>女</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -196,11 +195,7 @@
 
         </form>
 
-        <ul>
 
-            　　<li *ngFor="let item in roles">{{item}}</li>
-
-        </ul>
     </mat-card-content>
 
 </mat-card>
