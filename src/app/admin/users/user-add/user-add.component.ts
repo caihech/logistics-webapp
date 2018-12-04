@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Observable} from "rxjs/index";
+import {Observable} from 'rxjs/index';
 import {SharedReg} from '../../../shared/sharedReg';
 import {RolesService} from '../../roles/roles.service';
-import {JsogService} from 'jsog-typescript';
 import {UsersService} from '../users.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-user-add',
@@ -20,7 +20,7 @@ export class UserAddComponent implements OnInit {
     roles = [];
 
 
-    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService) {
+    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService, private router: Router) {
 
         this.userFormModel = fb.group({
                 username: [, [Validators.required, this.sharedReg.usernameRegValidator]],
@@ -57,18 +57,22 @@ export class UserAddComponent implements OnInit {
      * 提交表单
      */
     onSubmitForm() {
-        console.info(this.userFormModel.value);
         var _that = this;
         if (this.userFormModel.valid) {
-
-            console.info(this.userFormModel.value);
-
             _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
-                console.info(res);
+                alert('添加成功');
+                _that.router.navigate(['/admin/users']);
             }, (error) => {
-                console.info(error);
+                if (error['status'] === 400) {
+                    alert('数据格式错误');
+                } else if (error['status'] === 401) {
+                    alert('Token已过期');
+                } else if (error['status'] === 500) {
+                    alert('用户名已存在');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
             });
-
         }
     }
 
@@ -120,8 +124,7 @@ export class UserAddComponent implements OnInit {
             '';
     }
 
+    onResetForm() {
+        this.userFormModel.reset();
+    }
 }
-
-
-// userRet.setSex(user.getSex());
-// userRet.setValid(true);

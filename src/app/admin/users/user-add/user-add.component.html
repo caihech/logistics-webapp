@@ -190,7 +190,7 @@
 
             <div class="example-container">
                 <button mat-raised-button color="primary" type="submit" [disabled]="!userFormModel.valid">保存</button>
-                <button mat-raised-button type="submit">清空</button>
+                <button mat-raised-button type="button" (click)="onResetForm()">清空</button>
             </div>
 
 
