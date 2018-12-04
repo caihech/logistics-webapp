@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {SharedReg} from '../../../shared/sharedReg';
 import {RolesService} from '../../roles/roles.service';
 import {UsersService} from '../users.service';
@@ -19,116 +19,71 @@ export class UserDetailComponent implements OnInit {
 
     constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService, private router: Router, private route: ActivatedRoute,) {
 
-        let id = this.route.snapshot.paramMap.get('id');
-
-        this.userService.getUserById(id).subscribe((res) => {
-            console.info(res);
-
-            this.userFormModel = fb.group({
-                    id: [res['id']],
-                    username: [{
-                        value: res['username'].toString(),
-                        disabled: true
-                    }],
-                    password: [{
-                        value: '******',
-                        disabled: true
-                    }],
-                    mobilephone: [{
-                        value: res['mobilephone'],
-                        disabled: false
-                    }, [Validators.required, this.sharedReg.mobilephoneRegValidator]],
-                    email: [{
-                        value: res['email'],
-                        disabled: false
-                    }],
-                    fullname: [{
-                        value: res['fullname'],
-                        disabled: false
-                    }, [Validators.required]],
-                    birthday: [],
-                    companyName: [{
-                        value: res['companyName'],
-                        disabled: false
-                    }, [Validators.required]],
-                    postalCode: [{
-                        value: res['postalCode'],
-                        disabled: false
-                    }],
-                    address: [{
-                        value: res['address'],
-                        disabled: false
-                    }],
-                    fax: [{
-                        value: res['fax'],
-                        disabled: false
-                    }],
-                    telephone: [{
-                        value: res['telephone'],
-                        disabled: false
-                    }],
-                    wechat: [{
-                        value: res['mobilephone'],
-                        disabled: false
-                    }],
-                    weibo: [{
-                        value: res['weibo'],
-                        disabled: false
-                    }],
-                    remark: [{
-                        value: res['remark'],
-                        disabled: false
-                    }],
-                    sex: [{
-                        value: res['sex'],
-                        disabled: false
-                    }],
-                    valid: [{
-                        value: res['valid'] ? 1 : 0,
-                        disabled: false
-                    }],
-                    role: fb.group(
-                        {
-                            id: [{
-                                value: res['role']['id'],
-                                disabled: false
-                            }]
-                        }
-                    )
-                }
-            );
-        }, (err) => {
-
-            this.userFormModel = fb.group({
-                    id: [],
-                    username: [, [Validators.required, this.sharedReg.usernameRegValidator]],
-                    password: [, [Validators.required, this.sharedReg.passwordRegValidator]],
-                    mobilephone: [, [Validators.required, this.sharedReg.mobilephoneRegValidator]],
-                    email: [],
-                    fullname: [, [Validators.required]],
-                    birthday: [],
-                    companyName: [, [Validators.required]],
-                    postalCode: [],
-                    address: [],
-                    fax: [],
-                    telephone: [],
-                    wechat: [],
-                    weibo: [],
-                    remark: [],
-                    sex: [0],
-                    valid: [1],
-                    role: fb.group(
-                        {id: [1]}
-                    )
-                }
-            );
-        });
-
-
+        this.httpGetRoles();
+        this.userFormModel = fb.group({
+                id: [],
+                username: [{value: '', disabled: true}, [Validators.required, this.sharedReg.usernameRegValidator]],
+                password: [{value: '******', disabled: true}, [Validators.required, this.sharedReg.passwordRegValidator]],
+                mobilephone: [, [Validators.required, this.sharedReg.mobilephoneRegValidator]],
+                email: [],
+                fullname: [, [Validators.required]],
+                birthday: [],
+                companyName: [, [Validators.required]],
+                postalCode: [],
+                address: [],
+                fax: [],
+                telephone: [],
+                wechat: [],
+                weibo: [],
+                remark: [],
+                sex: [0],
+                valid: [1],
+                role: fb.group(
+                    {id: [1]}
+                )
+            }
+        );
     }
 
     ngOnInit() {
 
+
+        let id = this.route.snapshot.paramMap.get('id');
+        this.initUserInfoById(id);
+
+    }
+
+    initUserInfoById(id) {
+        var _that = this;
+
+        _that.userService.getUserById(id).subscribe((res) => {
+            console.info(res);
+
+            _that.userFormModel.patchValue({
+                id: res['id'],
+                username: res['username'],
+                mobilephone: res['mobilephone'],
+                email: [res['email']],
+                fullname: [res['fullname']],
+                birthday: [],
+                companyName: [res['companyName']],
+                postalCode: [res['postalCode']],
+                address: [res['address']],
+                fax: [res['fax']],
+                telephone: [res['telephone']],
+                wechat: [res['wechat']],
+                weibo: [res['weibo']],
+                remark: [res['remark']],
+                sex: [0],
+                valid: [res['valid'] ? 1 : 0],
+                role: {id: [res['role']['id']]}
+
+            });
+
+        }, (err) => {
+
+
+        });
     }
 
 
@@ -152,22 +107,23 @@ export class UserDetailComponent implements OnInit {
      */
     onSubmitForm() {
         var _that = this;
-        if (this.userFormModel.valid) {
-            _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
-                alert('添加成功');
-                _that.router.navigate(['/admin/users']);
-            }, (error) => {
-                if (error['status'] === 400) {
-                    alert('数据格式错误');
-                } else if (error['status'] === 401) {
-                    alert('Token已过期');
-                } else if (error['status'] === 500) {
-                    alert('用户名已存在');
-                } else {
-                    alert('其他错误状态码' + error['status']);
-                }
-            });
-        }
+        console.info(this.userFormModel.value);
+        // if (this.userFormModel.valid) {
+        //     _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
+        //         alert('添加成功');
+        //         _that.router.navigate(['/admin/users']);
+        //     }, (error) => {
+        //         if (error['status'] === 400) {
+        //             alert('数据格式错误');
+        //         } else if (error['status'] === 401) {
+        //             alert('Token已过期');
+        //         } else if (error['status'] === 500) {
+        //             alert('用户名已存在');
+        //         } else {
+        //             alert('其他错误状态码' + error['status']);
+        //         }
+        //     });
+        // }
     }
 
     // 用户名正则
