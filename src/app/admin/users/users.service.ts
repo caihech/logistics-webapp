@@ -38,4 +38,15 @@ export class UsersService {
     postUser(jsonData: Object): Observable<Object> {
         return this.http.post(SharedService.getUrl + '/users', jsonData, SharedService.getLoginHttpHeader);
     }
+
+
+    /**
+     * 通过用户id查询详细信息
+     * @param {number} id
+     * @returns {Observable<Object>}
+     */
+    getUserById(id): Observable<Object> {
+        return this.http.get(SharedService.getUrl + '/users/' + id, SharedService.getLoginHttpHeader)
+
+    }
 }

@@ -1,3 +1,194 @@
-<p>
-  user-detail works!
-</p>
+<mat-card>
+
+  <mat-card-title>
+    添加用户
+    <button mat-raised-button style="float: right;" routerLink="/admin/users">
+      返回
+    </button>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+
+    <form [formGroup]="userFormModel" (submit)="onSubmitForm()" style="margin-top: 30px;">
+
+
+      <div class="example-container">
+        <!-- username -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="用户名" formControlName="username"  disabled>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+
+        <!-- password -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="密码" formControlName="password"  disabled>
+        </mat-form-field>
+
+
+      </div>
+
+      <div class="example-container">
+
+        <!-- fullname -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8" required>
+          <mat-hint align="end">{{userFormModel.get('fullname').value?.length || 0}}/8</mat-hint>
+          <mat-error *ngIf="userFormModel.get('fullname').invalid">
+            {{getFullnameErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+
+        <!-- companyName -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="公司名称" formControlName="companyName" maxlength="16"
+                 required>
+          <mat-hint align="end">{{userFormModel.get('companyName').value?.length || 0}}/16</mat-hint>
+          <mat-error *ngIf="userFormModel.get('companyName').invalid">
+            {{getCompanyNameErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="example-container">
+
+        <!-- mobilephone -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="移动电话" formControlName="mobilephone" maxlength="11"
+                 required>
+          <mat-hint align="end">{{userFormModel.get('mobilephone').value?.length || 0}}/11</mat-hint>
+          <mat-error *ngIf="userFormModel.get('mobilephone').invalid">
+            {{getMobilephoneErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+        <!-- email -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="电子邮箱" formControlName="email" maxlength="32">
+          <mat-hint align="end">{{userFormModel.get('email').value?.length || 0}}/32</mat-hint>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="example-container">
+
+
+        <!-- 角色 -->
+        <mat-form-field fxFlex="49" formGroupName="role">
+          <mat-select formControlName="id" placeholder="用户角色" required>
+            <mat-option [value]=item.id *ngFor="let item of  roles">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+
+        <!-- 是否有效 -->
+        <mat-form-field fxFlex="49">
+          <mat-select formControlName="valid" placeholder="用户状态" required>
+            <mat-option [value]=0>无效</mat-option>
+            <mat-option [value]=1>有效</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="example-container">
+
+        <!-- 性别 -->
+        <mat-form-field fxFlex="49">
+          <mat-select formControlName="sex" placeholder="性别">
+            <mat-option [value]=0>保密</mat-option>
+            <mat-option [value]=1>男</mat-option>
+            <mat-option [value]=2>女</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+        <!-- birthday -->
+        <mat-form-field fxFlex="49">
+
+          <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="生日">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          <!--<input type="text" matInput placeholder="生日" formControlName="birthday" maxlength="16">-->
+          <!--<mat-hint align="end">{{userFormModel.get('birthday').value?.length || 0}}/16</mat-hint>-->
+        </mat-form-field>
+
+
+      </div>
+
+      <div class="example-container">
+
+        <!-- postalCode -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="邮政编码" formControlName="postalCode" maxlength="16">
+          <mat-hint align="end">{{userFormModel.get('postalCode').value?.length || 0}}/16</mat-hint>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+        <!-- address -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="通讯地址" formControlName="address" maxlength="40">
+          <mat-hint align=" end">{{userFormModel.get('address').value?.length || 0}}/16</mat-hint>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="example-container">
+
+        <!-- fax -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="传真" formControlName="fax" maxlength="16"
+          >
+          <mat-hint align="end">{{userFormModel.get('fax').value?.length || 0}}/16</mat-hint>
+        </mat-form-field>
+
+        <div fxFlex="2"></div>
+
+        <!-- telephone -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="办公电话" formControlName="telephone" maxlength="16">
+          <mat-hint align="end">{{userFormModel.get('telephone').value?.length || 0}}/16</mat-hint>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="example-container">
+
+        <!-- remark -->
+        <mat-form-field fxFlex="49">
+          <input type="text" matInput placeholder="备注" formControlName="remark" maxlength="50">
+          <mat-hint align="end">{{userFormModel.get('remark').value?.length || 0}}/16</mat-hint>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="example-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!userFormModel.valid">保存</button>
+        <button mat-raised-button type="button" (click)="onResetForm()">清空</button>
+      </div>
+
+
+    </form>
+
+
+  </mat-card-content>
+
+</mat-card>
