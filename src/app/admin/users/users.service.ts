@@ -47,6 +47,10 @@ export class UsersService {
      */
     getUserById(id): Observable<Object> {
         return this.http.get(SharedService.getUrl + '/users/' + id, SharedService.getLoginHttpHeader)
+    }
 
+
+    putUser(id, jsonData: Object): Observable<Object> {
+        return this.http.put(SharedService.getUrl + '/users/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
 }

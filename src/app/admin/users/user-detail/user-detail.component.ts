@@ -22,8 +22,8 @@ export class UserDetailComponent implements OnInit {
         this.httpGetRoles();
         this.userFormModel = fb.group({
                 id: [],
-                username: [{value: '', disabled: true}, [Validators.required, this.sharedReg.usernameRegValidator]],
-                password: [{value: '******', disabled: true}, [Validators.required, this.sharedReg.passwordRegValidator]],
+                username: [{value: '', disabled: true}],
+                password: [{value: '******', disabled: true}],
                 mobilephone: [, [Validators.required, this.sharedReg.mobilephoneRegValidator]],
                 email: [],
                 fullname: [, [Validators.required]],
@@ -47,7 +47,6 @@ export class UserDetailComponent implements OnInit {
 
     ngOnInit() {
 
-
         let id = this.route.snapshot.paramMap.get('id');
         this.initUserInfoById(id);
 
@@ -62,21 +61,22 @@ export class UserDetailComponent implements OnInit {
             _that.userFormModel.patchValue({
                 id: res['id'],
                 username: res['username'],
+                // password: res['password'],
                 mobilephone: res['mobilephone'],
-                email: [res['email']],
-                fullname: [res['fullname']],
-                birthday: [],
-                companyName: [res['companyName']],
-                postalCode: [res['postalCode']],
-                address: [res['address']],
-                fax: [res['fax']],
-                telephone: [res['telephone']],
-                wechat: [res['wechat']],
-                weibo: [res['weibo']],
-                remark: [res['remark']],
-                sex: [0],
-                valid: [res['valid'] ? 1 : 0],
-                role: {id: [res['role']['id']]}
+                email: res['email'],
+                fullname: res['fullname'],
+                birthday: res['birthday'],
+                companyName: res['companyName'],
+                postalCode: res['postalCode'],
+                address: res['address'],
+                fax: res['fax'],
+                telephone: res['telephone'],
+                wechat: res['wechat'],
+                weibo: res['weibo'],
+                remark: res['remark'],
+                sex: 0,
+                valid: res['valid'] ? 1 : 0,
+                role: {id: res['role']['id']}
 
             });
 
@@ -108,22 +108,23 @@ export class UserDetailComponent implements OnInit {
     onSubmitForm() {
         var _that = this;
         console.info(this.userFormModel.value);
-        // if (this.userFormModel.valid) {
-        //     _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
-        //         alert('添加成功');
-        //         _that.router.navigate(['/admin/users']);
-        //     }, (error) => {
-        //         if (error['status'] === 400) {
-        //             alert('数据格式错误');
-        //         } else if (error['status'] === 401) {
-        //             alert('Token已过期');
-        //         } else if (error['status'] === 500) {
-        //             alert('用户名已存在');
-        //         } else {
-        //             alert('其他错误状态码' + error['status']);
-        //         }
-        //     });
-        // }
+        if (this.userFormModel.valid) {
+            _that.userService.putUser(this.userFormModel.value.id, this.userFormModel.value).subscribe((res) => {
+                alert('修改成功');
+                console.info(res);
+                // _that.router.navigate(['/admin/users']);
+            }, (error) => {
+                if (error['status'] === 400) {
+                    alert('数据格式错误');
+                } else if (error['status'] === 401) {
+                    alert('Token已过期');
+                } else if (error['status'] === 500) {
+                    alert('用户名已存在');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
+            });
+        }
     }
 
     // 用户名正则
