@@ -15,7 +15,7 @@
 
             <!-- Name id -->
             <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 5%"> ID</th>
                 <td mat-cell *matCellDef="let element"> {{element.id}}</td>
             </ng-container>
 
@@ -26,13 +26,13 @@
                 </td>
             </ng-container>
 
-            <!-- Name email -->
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 邮箱</th>
-                <td mat-cell *matCellDef=" let element
-                "> {{element.email}}
+            <!-- Name Column -->
+            <ng-container matColumnDef="companyName">
+                <th mat-header-cell *matHeaderCellDef style="width: 15%"> 公司名称</th>
+                <td mat-cell *matCellDef=" let element"> {{element.companyName}}
                 </td>
             </ng-container>
+
 
             <!-- Name mobilephone -->
             <ng-container matColumnDef="mobilephone">
