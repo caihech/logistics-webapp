@@ -65,7 +65,7 @@ export class UserDetailComponent implements OnInit {
                 mobilephone: res['mobilephone'],
                 email: res['email'],
                 fullname: res['fullname'],
-                birthday: res['birthday'],
+                birthday: (new Date(res['birthday'])).toISOString(),
                 companyName: res['companyName'],
                 postalCode: res['postalCode'],
                 address: res['address'],
