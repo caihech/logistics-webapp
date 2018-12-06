@@ -16,7 +16,6 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 
 import {SharedService} from './shared/shared.service';
 import {LoginService} from './login/login.service';
-import {SharedReg} from './shared/sharedReg';
 
 
 @NgModule({
@@ -35,7 +34,7 @@ import {SharedReg} from './shared/sharedReg';
         AdminModule
 
     ],
-    providers: [SharedService,LoginService,SharedReg],
+    providers: [SharedService, LoginService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

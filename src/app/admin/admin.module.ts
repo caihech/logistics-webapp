@@ -21,6 +21,7 @@ import {VehicleDetailComponent} from './vehicles/vehicle-detail/vehicle-detail.c
 import {PasswordDialogComponent} from './users/password-dialog/password-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {JsogService} from 'jsog-typescript';
+import {SharedReg} from '../shared/sharedReg';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {JsogService} from 'jsog-typescript';
         PasswordDialogComponent
     ],
     entryComponents: [PasswordDialogComponent],
-    providers: [JsogService],
+    providers: [JsogService, SharedReg],
     exports: []
 })
 

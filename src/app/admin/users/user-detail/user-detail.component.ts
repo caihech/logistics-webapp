@@ -58,6 +58,7 @@ export class UserDetailComponent implements OnInit {
         _that.userService.getUserById(id).subscribe((res) => {
             console.info(res);
 
+
             _that.userFormModel.patchValue({
                 id: res['id'],
                 username: res['username'],
@@ -65,7 +66,7 @@ export class UserDetailComponent implements OnInit {
                 mobilephone: res['mobilephone'],
                 email: res['email'],
                 fullname: res['fullname'],
-                birthday: (new Date(res['birthday'])).toISOString(),
+                birthday: res['birthday'] ? (new Date(res['birthday'])).toISOString() : null,
                 companyName: res['companyName'],
                 postalCode: res['postalCode'],
                 address: res['address'],
