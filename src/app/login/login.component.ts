@@ -5,6 +5,9 @@ import {throwError} from 'rxjs/index';
 import {catchError} from 'rxjs/internal/operators';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
+import {ReactiveFormsModule, FormGroup, FormsModule} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
+import {SharedReg} from '../shared/sharedReg';
 
 
 @Component({
@@ -31,13 +34,39 @@ export class LoginComponent implements OnInit {
     code: String = '';
     flag = 0;
 
-    constructor(private loginService: LoginService, private router: Router) {
+
+    formLoginModel: FormGroup;
+
+    constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder, private sharedReg: SharedReg) {
+
+        this.formLoginModel = fb.group({
+                username: []
+                // id: [],
+                // username: ['', [Validators.required, sharedReg.usernameRegValidator]],
+                // password: ['', [Validators.required, sharedReg.passwordRegValidator]],
+                // code: ['', [Validators.required]],
+                // ip: [],
+                // address: [],
+                // client: [],
+                // token: [],
+                // tokenExpired: [],
+                // status: [0]
+            }
+        );
+
     }
 
     ngOnInit() {
         this.getCodeService();
     }
 
+
+    /**
+     * 登录事件
+     */
+    onClickSubmitForm() {
+
+    }
 
 
     /**

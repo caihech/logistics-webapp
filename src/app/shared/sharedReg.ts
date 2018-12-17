@@ -22,7 +22,7 @@ export class SharedReg {
 
     // 移动电话正则
     public mobilephoneRegValidator(control: FormControl): any {
-        const pwdRge =/^1(3|4|5|7|8)\d{9}$/;
+        const pwdRge = /^1(3|4|5|7|8)\d{9}$/;
         const vaild = pwdRge.test(control.value);
         return vaild ? null : {mobilephoneRegValidator: true};
     }
