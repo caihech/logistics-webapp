@@ -35,6 +35,7 @@ export class AdminComponent implements OnInit {
             return;
         } else {
             // todo 验证tokenExpired与当前时间对比,并且判断非空
+            console.info(SharedService.getStorageItem('token'))
             console.info(SharedService.getStorageItem('tokenExpired'))
             console.info('成功');
         }
