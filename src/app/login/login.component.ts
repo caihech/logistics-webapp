@@ -25,14 +25,14 @@ export class LoginComponent implements OnInit {
                 id: [],
                 username: ['', [Validators.required, sharedReg.usernameRegValidator]],
                 password: ['', [Validators.required, sharedReg.passwordRegValidator]],
-                code: ['', [Validators.required]],
+                code: [],
                 ip: [],
                 address: [],
                 client: [],
                 token: [],
                 tokenExpired: [],
                 status: [0],
-                verificationCode: []
+                verificationCode: ['', [Validators.required]]
             }
         );
 
@@ -48,10 +48,40 @@ export class LoginComponent implements OnInit {
      */
     onClickSubmitForm() {
 
-        console.info(this.formLoginModel.value);
+        // console.info(this.formLoginModel.value);
         var _that = this;
-        if (this.formLoginModel.valid) {
-            // console.info(this.formModel.value);
+        if (_that.formLoginModel.valid) {
+
+            console.info(_that.formLoginModel.value);
+
+            // 验证码是否正确
+            if (_that.formLoginModel.value.code.toUpperCase() !== _that.formLoginModel.value.verificationCode.toUpperCase()) {
+                alert('验证码错误');
+                return;
+            }
+
+            _that.loginService.postLogin(_that.formLoginModel.value).subscribe(function (data) {
+
+                console.info('success:' + data);
+                SharedService.setStorageItem('username', data['username']);
+                SharedService.setStorageItem('token', data['token']);
+                SharedService.setStorageItem('tokenExpired', data['tokenExpired']);
+                _that.router.navigate(['/admin']);
+
+
+            }, function (error) {
+                console.error('error:' + error['status']);
+                _that.getCodeService();
+                if (error['status'] === 450) {
+                    alert('验证码已过期');
+                } else if (error['status'] === 451) {
+                    alert('验证码错误');
+                } else if (error['status'] === 452) {
+                    alert('用户名或密码错误');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
+            });
         }
 
     }
@@ -82,63 +112,6 @@ export class LoginComponent implements OnInit {
             '';
     }
 
-
-    /**
-     * 登录
-     */
-    onSubmit() {
-        // this.flag = this.flag + 1;
-        // // 避免多次点击
-        // if (this.flag > 2) {
-        //     return;
-        // }
-        //
-        // // 用户名或密码不能为空
-        // if (!this.loginModel.username || !this.loginModel.password) {
-        //     this.flag = 0;
-        //     alert('用户名或密码不能为空');
-        //     return;
-        // }
-        //
-        // // 验证码是否正确
-        // if (this.loginModel.code.toUpperCase() !== this.code.toUpperCase()) {
-        //     alert('验证码错误');
-        //     this.flag = 0;
-        //     this.code = '';
-        //     return;
-        // }
-        //
-        //
-        // var that = this;
-        // console.info(this.loginModel);
-        //
-        // this.loginService.postLogin(this.loginModel).subscribe(function (data) {
-        //
-        //     console.info('success:' + data);
-        //
-        //     SharedService.setStorageItem('username', data['username']);
-        //     SharedService.setStorageItem('token', data['token']);
-        //     SharedService.setStorageItem('tokenExpired', data['tokenExpired']);
-        //     this.flag = 0;
-        //     that.router.navigate(['/admin']);
-        //
-        //
-        // }, function (error) {
-        //     console.error('error:' + error['status']);
-        //     that.getCodeService();
-        //     if (error['status'] === 450) {
-        //         alert('验证码已过期');
-        //     } else if (error['status'] === 451) {
-        //         alert('验证码错误');
-        //     } else if (error['status'] === 452) {
-        //         alert('用户名或密码错误');
-        //     } else {
-        //         alert('其他错误状态码' + error['status']);
-        //     }
-        // });
-    }
-
-
     /**
      * 获取验证码
      */
@@ -156,7 +129,7 @@ export class LoginComponent implements OnInit {
                     token: res['token'],
                     tokenExpired: res['tokenExpired'],
                     status: res['status'],
-                    verificationCode: ['']
+                    verificationCode: ''
                 });
             }, (error) => {
                 console.error(error);

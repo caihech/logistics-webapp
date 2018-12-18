@@ -18,6 +18,7 @@
                 <h4 class="login-header">用户登录</h4>
                 <div class="content">
 
+
                     <!-- 用户名 -->
                     <div class="form-group">
                         <input matInput class="form-control" placeholder="用户名" formControlName="username" maxlength="16"
@@ -63,8 +64,8 @@
 
                     <!-- 登录按钮 -->
                     <div class="form-group">
-                        <button class="login-button" type="submit" [disabled]="!formLoginModel.valid">登录
-                        </button>
+
+                        <button mat-raised-button color="accent" type="submit" style="margin-top: 15px;width: 100%;" [disabled]="!formLoginModel.valid">登录</button>
                     </div>
 
                 </div>
