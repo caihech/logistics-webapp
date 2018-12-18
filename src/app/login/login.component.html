@@ -19,56 +19,54 @@
                 <div class="content">
 
                     <!-- 用户名 -->
-                    <mat-form-field class="form-group">
-                        <input matInput class="form-control" placeholder="用户名" formControlName="username" required>
-                        <mat-hint>Errors appear instantly!</mat-hint>
-                        <!--<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">-->
-                            <!--Please enter a valid email address-->
-                        <!--</mat-error>-->
-                        <!--<mat-error *ngIf="emailFormControl.hasError('required')">-->
-                            <!--Email is <strong>required</strong>-->
-                        <!--</mat-error>-->
-                    </mat-form-field>
-
-
-                    <!--<div class="example-container">-->
-                    <!--<mat-form-field>-->
-                        <!--<input type="password" matInput placeholder="当前密码" formControlName="currentPassword"-->
-                               <!--maxlength="16"-->
-                               <!--required>-->
-                        <!--<mat-hint align="end">{{formModel.get('currentPassword').value?.length || 0}}/16</mat-hint>-->
-                        <!--<mat-error *ngIf="formModel.get('currentPassword').invalid">{{getCurrentPasswordErrorMessage()}}-->
-                        <!--</mat-error>-->
-                    <!--</mat-form-field>-->
-                    <!--</div>-->
-
+                    <div class="form-group">
+                        <input matInput class="form-control" placeholder="用户名" formControlName="username" maxlength="16"
+                               required>
+                        <div *ngIf="formLoginModel.get('username').dirty || formLoginModel.get('username').touched"
+                             class="alert alert-danger">
+                            <mat-error *ngIf="formLoginModel.get('username').invalid">{{getUsernameErrorMessage()}}
+                            </mat-error>
+                        </div>
+                    </div>
 
                     <!-- 密码 -->
-                    <!--<div class="form-group">-->
-                    <!--<input type="password" required class="form-control" [(ngModel)]="loginModel.password">-->
-                    <!--<label class="form-label">密 码</label>-->
-                    <!--</div>-->
+                    <div class="form-group">
+
+                        <input matInput class="form-control" placeholder="密码" formControlName="password" type="password"
+                               maxlength="16" required>
+                        <div *ngIf="formLoginModel.get('password').dirty || formLoginModel.get('password').touched"
+                             class="alert alert-danger">
+                            <mat-error *ngIf="formLoginModel.get('password').invalid">{{getPasswordErrorMessage()}}
+                            </mat-error>
+                        </div>
+                    </div>
+
 
                     <!-- 验证码 -->
-                    <!--<div class="form-group">-->
-                    <!--<input type="text" required class="form-control" style="width: 75%"-->
-                    <!--[(ngModel)]="code">-->
-                    <!--<label class="form-label">验证码</label>-->
+                    <div class="form-group">
 
+                        <input matInput class="form-control" style="width: 75%" placeholder="验证码"
+                               formControlName="verificationCode"
+                               maxlength="4" required>
+                        <div *ngIf="formLoginModel.get('verificationCode').dirty || formLoginModel.get('verificationCode').touched"
+                             class="alert alert-danger">
+                            <mat-error *ngIf="formLoginModel.get('verificationCode').invalid">{{getCodeErrorMessage()}}
+                            </mat-error>
+                        </div>
+                        <div class="lgoinCode" (click)="getCodeService()">
+                            <span>
+                            {{formLoginModel.get('code').value}}
+                            </span>
+                        </div>
 
-                    <!--<div class="lgoinCode" (click)="getCodeService()">-->
-                    <!--<span>{{loginModel.code}}</span>-->
-                    <!--</div>-->
-                    <!--</div>-->
+                    </div>
 
                     <!-- 登录按钮 -->
                     <div class="form-group">
-                        <button mat-raised-button color="primary" type="submit" [disabled]="!formLoginModel.valid">保存
+                        <button class="login-button" type="submit" [disabled]="!formLoginModel.valid">登录
                         </button>
-                        <!--<button class="login-button" (click)='onSubmit()'>-->
-                        <!--<span class="icon-login">登 录</span>-->
-                        <!--</button>-->
                     </div>
+
                 </div>
             </div>
         </form>
