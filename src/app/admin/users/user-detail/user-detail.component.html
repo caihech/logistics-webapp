@@ -34,7 +34,7 @@
 
                 <!-- fullname -->
                 <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8">
+                    <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8"  required>
                     <mat-hint align="end">{{userFormModel.get('fullname').value?.length || 0}}/8</mat-hint>
                     <mat-error *ngIf="userFormModel.get('fullname').invalid">
                         {{getFullnameErrorMessage()}}
