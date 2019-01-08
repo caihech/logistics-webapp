@@ -15,4 +15,5 @@ export class ConsignmentNoteAddComponent implements OnInit {
     ngOnInit() {
     }
 
+
 }

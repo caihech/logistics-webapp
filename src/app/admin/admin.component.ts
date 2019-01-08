@@ -19,7 +19,10 @@ export class AdminComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.permission();
+        // this.permission();
+        SharedService.setStorageItem('username', 'admin');
+        SharedService.setStorageItem('token', 'a31ff937-6083-45c2-a607-beeba85935f0');
+        SharedService.setStorageItem('tokenExpired', '2018-12-28 08:10:14');
     }
 
 

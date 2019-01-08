@@ -1,3 +1,106 @@
-<p>
-  vehicle-add works!
-</p>
+<mat-card>
+
+    <mat-card-title>添加马单</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-tab-group>
+        <mat-tab label="one">
+            <br>
+
+
+            <div class="container" fxLayout="row" fxLayoutGap="10px">
+                <div class="item item-1" fxFlex="50">
+                    <mat-form-field style="width:100%;">
+                        <input matInput placeholder="车号/班次" required>L3222
+                    </mat-form-field>
+                </div>
+                <div class="item item-2" fxFlex="50">
+
+                    <mat-form-field style="width:100%;">
+                        <input matInput placeholder="发车日期">2018-12-3
+                    </mat-form-field>
+                </div>
+
+                <div class="item item-2" fxFlex="50">
+
+                    <mat-form-field style="width:100%;">
+                        <input matInput placeholder="运输途中联系方式">2018-12-3
+                    </mat-form-field>
+                </div>
+
+                <div class="item item-2" fxFlex="50">
+
+                    <mat-form-field style="width:100%;">
+                        <input matInput placeholder="预计到达时间">2019-1-13
+                    </mat-form-field>
+                </div>
+
+                <div class="item item-2" fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>预计到达时间</mat-label>
+                        <input matInput placeholder="2019-1-13">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-hint>时间</mat-hint>
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                          [checked]="selection.hasValue() && isAllSelected()"
+                                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                          (change)="$event ? selection.toggle(row) : null"
+                                          [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef> Weight </th>
+                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+            <div class="example-button-row">
+                <button mat-raised-button>DELETE</button>
+                <button mat-raised-button>SAVE</button>
+
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+
+
+</mat-card>
