@@ -1,4 +1,3 @@
-
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ConsignmentNotesService} from './consignment-notes.service';
@@ -14,13 +13,13 @@ export class ConsignmentNotesComponent implements OnInit {
 
 
     consignmentTableDisplayedColumns: string[] = ['id', 'orderNumber', 'articleNumber', 'consignmentDate', 'shippersName', 'shippersPhone',
-        'goodsName', 'weight', 'number'];
-    consignmentTableDataSource;
+        'goodsName', 'weight', 'number', 'delete', 'edit'];
+    consignmentTableDataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
 
-    constructor( private roleservice: RolesService) {
+    constructor(private roleservice: RolesService) {
     }
 
     ngOnInit() {
@@ -67,3 +66,57 @@ export class ConsignmentNotesComponent implements OnInit {
     }
 
 }
+
+
+export interface PeriodicElement {
+    id: number;
+    orderNumber: string;
+    articleNumber: string;
+    consignmentDate: string;
+    shippersName: string;
+    shippersPhone: string;
+    goodsName: string;
+    weight: string;
+    number: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+    {
+
+        id: 12,
+        orderNumber: 'asd',
+        articleNumber: 'ddxfd',
+        consignmentDate: '2018-2-12',
+        shippersName: 'werewrw',
+        shippersPhone: 'vbcbvc',
+        goodsName: 'vcbvcb',
+        weight: 'dfsdfs',
+        number: 'dsgdbvc'
+    },
+    {
+
+        id: 12,
+        orderNumber: 'asd',
+        articleNumber: 'ddxfd',
+        consignmentDate: '2018-2-12',
+        shippersName: 'werewrw',
+        shippersPhone: 'vbcbvc',
+        goodsName: 'vcbvcb',
+        weight: 'dfsdfs',
+        number: 'dsgdbvc'
+    },
+    {
+
+        id: 12,
+        orderNumber: 'asd',
+        articleNumber: 'ddxfd',
+        consignmentDate: '2018-2-12',
+        shippersName: 'werewrw',
+        shippersPhone: 'vbcbvc',
+        goodsName: 'vcbvcb',
+        weight: 'dfsdfs',
+        number: 'dsgdbvc'
+    }
+
+
+];
