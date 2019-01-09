@@ -1,3 +1,108 @@
-<p>
-  vehicles works!
-</p>
+
+<div class="vehicles">
+
+  <mat-card>
+
+    <mat-card-title>
+      马单列表
+      <button mat-raised-button color="primary" style="float: right;" routerLink="/admin/vehicle/add">
+        添加
+      </button>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <table mat-table [dataSource]="vehiclesTableDataSource" matSort class="vehiclesTable">
+
+      <!-- Name id -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 5%"> ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+      </ng-container>
+
+      <!-- Name orderNumber -->
+      <ng-container matColumnDef="licensePlate">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%">车号/班次</th>
+        <td mat-cell *matCellDef=" let element"> {{element.licensePlate}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="driverName">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 驾驶员</th>
+        <td mat-cell *matCellDef="let element"> {{element.driverName}}</td>
+      </ng-container>
+
+      <!-- Name articleNumber -->
+      <ng-container matColumnDef="drivingLicenseNumber">
+        <th mat-header-cell *matHeaderCellDef style="width: 15%"> 驾驶证编号</th>
+        <td mat-cell *matCellDef=" let element"> {{element.drivingLicenseNumber}}
+        </td>
+      </ng-container>
+
+
+      <!-- Name consignmentDate -->
+      <ng-container matColumnDef="driverPhone">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 运输途中联系方式</th>
+        <td mat-cell *matCellDef="let element"> {{element.driverPhone }}</td>
+      </ng-container>
+
+
+      <!-- Name shippersName -->
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 发车时间</th>
+        <td mat-cell *matCellDef="let element"> {{element.startDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+      </ng-container>
+
+      <!-- Name shippersPhone -->
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 预计到货时间</th>
+        <td mat-cell *matCellDef="let element"> {{element.endDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleStatus">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 货物状态</th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleStatus}}</td>
+      </ng-container>
+      <ng-container matColumnDef="consignmentNotes">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 包含托运单数</th>
+        <td mat-cell *matCellDef="let element"> {{element.consignmentNotes}}</td>
+      </ng-container>
+
+      <!-- Name edit -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 编辑</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-stroked-button color="primary" routerLink="/admin/vehicle/detail/{{element.id}}" >编辑</button>
+        </td>
+      </ng-container>
+
+      <!-- Name delete -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%"> 删除</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-stroked-button color="warn" (click)="onDelete(element.id)">删除</button>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="star" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon>edit</mat-icon>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="vehiclesTableDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: vehiclesTableDisplayedColumns;"></tr>
+
+    </table>
+
+
+    <mat-paginator pageSize="20" [pageSizeOptions]="[5, 10, 20,50,100]" showFirstLastButtons></mat-paginator>
+
+  </mat-card>
+
+
+</div>
+

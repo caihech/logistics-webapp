@@ -1,46 +1,114 @@
-<mat-card>
 
-    <mat-card-title>
-        托运单列表
-        <button mat-raised-button style="float: right;" routerLink="/admin/consignmentnote/add"> 添加 </button>
-    </mat-card-title>
+<div class="consignments">
 
+    <mat-card>
 
-    <mat-divider></mat-divider>
+        <mat-card-title>
+            托运单列表
+            <button mat-raised-button color="primary" style="float: right;" routerLink="/admin/consignmentnote/add">
+                添加
+            </button>
+        </mat-card-title>
 
+        <mat-divider></mat-divider>
+        <mat-form-field>
+            <input matInput placeholder="托运单/托运人搜索" >
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <table mat-table [dataSource]="consignmentTableDataSource" matSort class="consignmentsTable">
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Name id -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 5%"> ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+            </ng-container>
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
+            <!-- Name orderNumber -->
+            <ng-container matColumnDef="orderNumber">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 订单编号</th>
+                <td mat-cell *matCellDef=" let element"> {{element.orderNumber}}
+                </td>
+            </ng-container>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No.</th>
-            <td mat-cell *matCellDef="let element"> {{element.position}}</td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight</th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}}</td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol</th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <!-- Name articleNumber -->
+            <ng-container matColumnDef="articleNumber">
+                <th mat-header-cell *matHeaderCellDef style="width: 15%"> 货号</th>
+                <td mat-cell *matCellDef=" let element"> {{element.articleNumber}}
+                </td>
+            </ng-container>
 
 
-</mat-card>
+            <!-- Name consignmentDate -->
+            <ng-container matColumnDef="consignmentDate">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 托运日期</th>
+                <td mat-cell *matCellDef="let element"> {{element.consignmentDate |date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </ng-container>
+
+
+            <!-- Name shippersName -->
+            <ng-container matColumnDef="shippersName">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 托运人姓名</th>
+                <td mat-cell *matCellDef="let element"> {{element.shippersName}}</td>
+            </ng-container>
+
+            <!-- Name shippersPhone -->
+            <ng-container matColumnDef="shippersPhone">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 托运人电话</th>
+                <td mat-cell *matCellDef="let element"> {{element.shippersPhone}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="goodsName">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 货物名称</th>
+                <td mat-cell *matCellDef="let element"> {{element.goodsName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 重量</th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}}</td>
+            </ng-container>
+            <ng-container matColumnDef="number">
+                <th mat-header-cell *matHeaderCellDef style="width: 10%"> 件数</th>
+                <td mat-cell *matCellDef="let element"> {{element.number}}</td>
+            </ng-container>
+
+            <!-- Name edit -->
+            <!--<ng-container matColumnDef="edit1">-->
+                <!--<th mat-header-cell *matHeaderCellDef style="width: 10%"> 编辑</th>-->
+                <!--<td mat-cell *matCellDef="let element">-->
+                    <!--<button mat-stroked-button color="primary" routerLink="/admin/consignmentnote/detail/{{element.id}}" >编辑</button>-->
+                <!--</td>-->
+            <!--</ng-container>-->
+
+            <!-- Name delete -->
+            <!--<ng-container matColumnDef="delete1">-->
+                <!--<th mat-header-cell *matHeaderCellDef style="width: 10%"> 删除</th>-->
+                <!--<td mat-cell *matCellDef="let element">-->
+                    <!--<button mat-stroked-button color="warn" (click)="onDelete(element.id)">删除</button>-->
+                <!--</td>-->
+            <!--</ng-container>-->
+
+            <ng-container matColumnDef="edit" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon>edit</mat-icon>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="delete" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon>delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="consignmentTableDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: consignmentTableDisplayedColumns;"></tr>
+
+        </table>
+
+
+        <mat-paginator pageSize="20" [pageSizeOptions]="[5, 10, 20,50,100]" showFirstLastButtons></mat-paginator>
+
+    </mat-card>
+
+
+</div>
+

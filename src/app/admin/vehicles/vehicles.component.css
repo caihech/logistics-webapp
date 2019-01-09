@@ -1,0 +1,20 @@
+
+.vehicles {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.vehiclesTable{
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.vehiclesTable th{
+    text-align: center;
+}
+
+.vehiclesTable tr{
+    text-align: center;
+}
+
