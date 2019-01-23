@@ -1,0 +1,39 @@
+
+.tab {
+    width: 800px;
+    height: 30px;
+    float: left;
+}
+
+.tab-th{
+    width: 100%;
+    height: 30px;
+    float: left;
+    border-right: 1px solid #777777;
+}
+
+.tab-th div {
+    height: 30px;
+    float: left;
+    border-left: 1px solid #777777;
+    border-top: 1px solid #777777;
+    line-height: 30px;
+    text-align: center;
+}
+
+.tab-tr {
+    width: 100%;
+    height: 30px;
+    float: left;
+    border-right: 1px solid #777777;
+}
+
+.tab-tr div {
+    height: 30px;
+    float: left;
+    border-left: 1px solid #777777;
+    border-top: 1px solid #777777;
+    line-height: 30px;
+    text-align: center;
+}
+
