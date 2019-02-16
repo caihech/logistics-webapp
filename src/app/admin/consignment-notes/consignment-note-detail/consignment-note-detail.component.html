@@ -9,7 +9,7 @@
         <div style="width: 15%">到站:</div>
         <div style="width: 35%">
             <!--<mat-form-field style="width:100%; ">-->
-                <input matInput required>
+            <input matInput required>
             <!--</mat-form-field>-->
         </div>
         <div style="width: 15%">货号:</div>
@@ -48,7 +48,13 @@
     <div class="tab-tr">
         <div style="width: 15%">(托运人/单位)姓名:</div>
         <div style="width: 35%">
-            <input matInput required>
+            <!--<mat-form-field fxFlex="49">-->
+                <input matInput placeholder=""  maxlength="16" required>
+                <!--<mat-hint align="end">{{userFormModel.get('username').value?.length || 0}}/16</mat-hint>-->
+                <!--<mat-error *ngIf="userFormModel.get('username').invalid">-->
+                    <!--{{getUsernameErrorMessage()}}-->
+                <!--</mat-error>-->
+            <!--</mat-form-field>-->
         </div>
         <div style="width: 15%">(托运人/单位)电话:</div>
         <div style="width: 34%">
@@ -96,7 +102,7 @@
     </div>
 
     <div class="tab-tr">
-        <div style="width: 15%">备注</div>
+        <div style="width: 15%">备注 xiou</div>
         <div style="width: 84%"><input matInput required></div>
     </div>
 
@@ -114,3 +120,4 @@
     </div>
 
 </div>
+
