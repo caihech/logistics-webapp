@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ConsignmentNotesService} from './consignment-notes.service';
-import {RolesService} from "../roles/roles.service";
+import {RolesService} from '../roles/roles.service';
 
 
 @Component({
@@ -14,22 +14,22 @@ export class ConsignmentNotesComponent implements OnInit {
 
     consignmentTableDisplayedColumns: string[] = ['id', 'orderNumber', 'articleNumber', 'consignmentDate', 'shippersName', 'shippersPhone',
         'goodsName', 'weight', 'number', 'delete', 'edit'];
-    consignmentTableDataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+    // consignmentTableDataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
 
-    constructor(private roleservice: RolesService) {
+    constructor(private consignmentNotesService: ConsignmentNotesService) {
     }
 
     ngOnInit() {
-        // this.httpGetConsignmentNotes();
-        console.info('aaa');
-        this.roleservice.getRoles().subscribe((res) => {
-            console.info(res);
-        }, (error) => {
-            console.info(error);
-        });
+        this.httpGetConsignmentNotes();
+        // console.info('aaa');
+        // this.roleservice.getRoles().subscribe((res) => {
+        //     console.info(res);
+        // }, (error) => {
+        //     console.info(error);
+        // });
     }
 
 
@@ -37,16 +37,17 @@ export class ConsignmentNotesComponent implements OnInit {
      * 获取托运单信息
      */
     httpGetConsignmentNotes() {
-        // const _that = this;
-        // _that.consignmentNotesService.getConsignmentNotes().subscribe(
-        //     function (res) {
-        //         _that.consignmentTableDataSource = new MatTableDataSource<Object>(res);
-        //         _that.consignmentTableDataSource.paginator = _that.paginator;
-        //         _that.consignmentTableDataSource.sort = _that.sort;
-        //     }, function (error) {
-        //         console.error(error);
-        //     }
-        // );
+        const _that = this;
+        _that.consignmentNotesService.getConsignmentNotes().subscribe(
+            function (res) {
+                console.info(res);
+                // _that.consignmentTableDataSource = new MatTableDataSource<Object>(res);
+                // _that.consignmentTableDataSource.paginator = _that.paginator;
+                // _that.consignmentTableDataSource.sort = _that.sort;
+            }, function (error) {
+                console.error(error);
+            }
+        );
     }
 
     /**
@@ -79,44 +80,3 @@ export interface PeriodicElement {
     weight: string;
     number: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-    {
-
-        id: 12,
-        orderNumber: 'asd',
-        articleNumber: 'ddxfd',
-        consignmentDate: '2018-2-12',
-        shippersName: 'werewrw',
-        shippersPhone: 'vbcbvc',
-        goodsName: 'vcbvcb',
-        weight: 'dfsdfs',
-        number: 'dsgdbvc'
-    },
-    {
-
-        id: 12,
-        orderNumber: 'asd',
-        articleNumber: 'ddxfd',
-        consignmentDate: '2018-2-12',
-        shippersName: 'werewrw',
-        shippersPhone: 'vbcbvc',
-        goodsName: 'vcbvcb',
-        weight: 'dfsdfs',
-        number: 'dsgdbvc'
-    },
-    {
-
-        id: 12,
-        orderNumber: 'asd',
-        articleNumber: 'ddxfd',
-        consignmentDate: '2018-2-12',
-        shippersName: 'werewrw',
-        shippersPhone: 'vbcbvc',
-        goodsName: 'vcbvcb',
-        weight: 'dfsdfs',
-        number: 'dsgdbvc'
-    }
-
-
-];
