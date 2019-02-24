@@ -21,6 +21,8 @@ export class ConsignmentNoteAddComponent implements OnInit {
             articleNumber: [],
             // 托运日期 必填 日期
             consignmentDate: [],
+            // 到货地址
+            goodsAddress: [],
             // 托运人 姓名 必填 10字节
             shippersName: [],
             // 托运人 电话 必填 15字节
@@ -63,22 +65,54 @@ export class ConsignmentNoteAddComponent implements OnInit {
             // remark
             remark: [],
             // 打印次数
-            printCount: []
-
+            printCount: [],
+            // 提货人
+            consignee: [],
+            // 身份证
+            idCard: [],
+            // 发货人
+            consignor: []
 
         });
 
     }
 
     ngOnInit() {
+        this.initWebData();
     }
 
+
+    /**
+     * 初始化页面数据
+     */
+    initWebData() {
+
+        var _that = this;
+        this.ordersFormModel.patchValue({
+            orderNumber: '',
+            weight: 0.000,
+            volume: 0.00,
+            number: 0,
+            insurance: 0.00,
+            premium: 0.00,
+            monthlyStatement: 0.00,
+            receiptPayment: 0.00,
+            cashPayment: 0.00,
+            extractPayment: 0.00,
+            shortHaulFreight: 0.00,
+            collectionOnDelivery: 0.00,
+            // 合计 不可编辑 计算公式:保费+月结+回单付+现金+提付+短途运费+代收货款
+            amount: 0.00,
+            printCount: 0
+        });
+    }
 
     /**
      * 提交表单
      */
     onSubmitForm() {
         var _that = this;
+        console.info(this.ordersFormModel.value);
         if (this.ordersFormModel.valid) {
             // _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
             //     alert('添加成功');
@@ -94,15 +128,16 @@ export class ConsignmentNoteAddComponent implements OnInit {
             //         alert('其他错误状态码' + error['status']);
             //     }
             // });
+            console.info("success");
+        } else {
+            console.info("faile");
         }
     }
-
 
     /**
      * 清空表单
      */
     onResetForm() {
     }
-
 
 }

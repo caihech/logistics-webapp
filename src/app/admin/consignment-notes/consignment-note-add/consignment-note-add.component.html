@@ -16,7 +16,7 @@
                     托运单
                 </td>
                 <td colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="orderNumber" disabled="true">
                 </td>
             </tr>
 
@@ -25,24 +25,24 @@
                     到站<span style="color: red">*</span>
                 </td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="station" required>
                 </td>
                 <td style="width: 15%" colspan="2">
                     货号<span style="color: red">*</span>
                 </td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="articleNumber" required>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 15%" colspan="2">托运日期<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="consignmentDate" required>
                 </td>
                 <td style="width: 15%" colspan="2">到货地址<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="goodsAddress" required>
                 </td>
             </tr>
 
@@ -71,22 +71,22 @@
             <tr>
                 <td style="width: 15%" colspan="2">(托运人/单位)姓名<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="shippersName" required>
                 </td>
                 <td style="width: 15%" colspan="2">(托运人/单位)电话<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="shippersPhone" required>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 15%" colspan="2">(收货人/单位)姓名<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="consigneeName" required>
                 </td>
                 <td style="width: 15%" colspan="2">(收货人/单位)电话<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" required>
+                    <input type="text" style="width: 98%; height: 100%" formControlName="consigneePhone" required>
                 </td>
             </tr>
 
@@ -102,55 +102,91 @@
             </tr>
 
             <tr>
-                <td style="width: 16%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
-                <td style="width: 16%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
-                <td style="width: 16%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
-                <td style="width: 16%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
-                <td style="width: 16%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
-                <td style="width: 8%" colspan="1"><input type="text" style="width: 90%; height: 100%"></td>
-                <td style="width: 8%" colspan="1"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 16%" colspan="2">
+                    <input type="text" style="width: 96%; height: 100%" formControlName="goodsName" required>
+                </td>
+                <td style="width: 16%" colspan="2">
+                    <input type="text" style="width: 96%; height: 100%" formControlName="packaging">
+                </td>
+                <td style="width: 16%" colspan="2">
+                    <input type="number" style="width: 96%; height: 100%" formControlName="weight" required>
+                </td>
+                <td style="width: 16%" colspan="2">
+                    <input type="number" style="width: 96%; height: 100%" formControlName="volume" required>
+                </td>
+                <td style="width: 16%" colspan="2">
+                    <input type="number" style="width: 96%; height: 100%" formControlName="number" required>
+                </td>
+                <td style="width: 8%" colspan="1">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="insurance" required>
+                </td>
+                <td style="width: 8%" colspan="1">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="premium" disabled="true"
+                           required>
+                </td>
             </tr>
 
 
             <tr>
                 <td style="width: 8%">月结</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="monthlyStatement" >
+                </td>
                 <td style="width: 8%">回单付</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="receiptPayment">
+                </td>
                 <td style="width: 8%">现金</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="cashPayment">
+                </td>
                 <td style="width: 8%">提付</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="extractPayment">
+                </td>
                 <td style="width: 8%">短途运费</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="shortHaulFreight">
+                </td>
                 <td style="width: 8%">合计</td>
-                <td style="width: 8%"><input type="text" style="width: 90%; height: 100%"></td>
+                <td style="width: 8%">
+                    <input type="number" style="width: 90%; height: 100%" formControlName="amount" disabled="true">
+                </td>
             </tr>
 
             <tr>
                 <td style="width: 15%" colspan="2">代收货款</td>
-                <td style="width: 15%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
+                <td style="width: 15%" colspan="2">
+                    <input type="number" style="width: 96%; height: 100%" formControlName="collectionOnDelivery">
+                </td>
                 <td style="width: 15%" colspan="2">送货地址</td>
-                <td style="width: 54%" colspan="6"><input type="text" style="width: 98%; height: 100%"></td>
+                <td style="width: 54%" colspan="6">
+                    <input type="text" style="width: 98%; height: 100%" formControlName="deliveryAddress">
+                </td>
             </tr>
 
             <tr>
                 <td style="width: 15%" colspan="2">备注</td>
-                <td style="width: 84%" colspan="10"><input type="text" style="width: 99%; height: 100%"></td>
+                <td style="width: 84%" colspan="10">
+                    <input type="text" style="width: 99%; height: 100%" formControlName="remark">
+                </td>
             </tr>
 
             <tr>
                 <td style="width: 15%" colspan="2">提货人签字</td>
-                <td style="width: 15%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
+                <td style="width: 15%" colspan="2">
+                    <input type="text" style="width: 96%; height: 100%" formControlName="consignee">
+                </td>
                 <td style="width: 15%" colspan="2">身份证号</td>
-                <td style="width: 25%" colspan="2"><input type="text" style="width: 98%; height: 100%"></td>
+                <td style="width: 25%" colspan="2">
+                    <input type="text" style="width: 98%; height: 100%" formControlName="idCard">
+                </td>
                 <td style="width: 15%" colspan="2">发货人签字</td>
-                <td style="width: 14%" colspan="2"><input type="text" style="width: 96%; height: 100%"></td>
+                <td style="width: 14%" colspan="2">
+                    <input type="text" style="width: 96%; height: 100%" formControlName="consignor">
+                </td>
             </tr>
-
-
         </table>
-
         <br>
         <div class="example-container" style="text-align: center;">
             <button mat-raised-button color="primary" type="submit" [disabled]="!ordersFormModel.valid">保存</button>
