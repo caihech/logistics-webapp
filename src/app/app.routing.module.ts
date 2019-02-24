@@ -38,7 +38,7 @@ const routes: Routes = [
 
         {path: 'consignmentnotes', component: ConsignmentNotesComponent},
         {path: 'consignmentnote/add', component: ConsignmentNoteAddComponent},
-        {path: 'consignmentnote/detail', component: ConsignmentNoteDetailComponent},
+        {path: 'consignmentnote/detail/:id', component: ConsignmentNoteDetailComponent},
 
         {path: 'vehicles', component: VehiclesComponent},
         {path: 'vehicle/add', component: VehicleAddComponent},
