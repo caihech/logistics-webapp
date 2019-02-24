@@ -38,7 +38,13 @@
             <tr>
                 <td style="width: 15%" colspan="2">托运日期<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="text" style="width: 98%; height: 100%" formControlName="consignmentDate" required>
+                    <!--<input type="text" [matDatepicker]="consignmentDate" style="width: 95%; height: 100%"-->
+                    <!--formControlName="consignmentDate" required>-->
+                    <!--<mat-datepicker-toggle matSuffix [for]="consignmentDate"></mat-datepicker-toggle>-->
+                    <!--<mat-datepicker #consignmentDate></mat-datepicker>-->
+
+                    <input type="text"  style="width: 95%; height: 100%" formControlName="consignmentDate" >
+
                 </td>
                 <td style="width: 15%" colspan="2">到货地址<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
@@ -130,7 +136,7 @@
             <tr>
                 <td style="width: 8%">月结</td>
                 <td style="width: 8%">
-                    <input type="number" style="width: 90%; height: 100%" formControlName="monthlyStatement" >
+                    <input type="number" style="width: 90%; height: 100%" formControlName="monthlyStatement">
                 </td>
                 <td style="width: 8%">回单付</td>
                 <td style="width: 8%">

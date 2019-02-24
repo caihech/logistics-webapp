@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ConsignmentNotesService} from '../consignment-notes.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-consignment-note-add',
@@ -10,7 +12,7 @@ export class ConsignmentNoteAddComponent implements OnInit {
 
     ordersFormModel: FormGroup;
 
-    constructor(fb: FormBuilder) {
+    constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router) {
 
         this.ordersFormModel = fb.group({
             // 订单编号 8位 唯一 必填
@@ -114,21 +116,20 @@ export class ConsignmentNoteAddComponent implements OnInit {
         var _that = this;
         console.info(this.ordersFormModel.value);
         if (this.ordersFormModel.valid) {
-            // _that.userService.postUser(this.userFormModel.value).subscribe((res) => {
-            //     alert('添加成功');
-            //     _that.router.navigate(['/admin/users']);
-            // }, (error) => {
-            //     if (error['status'] === 400) {
-            //         alert('数据格式错误');
-            //     } else if (error['status'] === 401) {
-            //         alert('Token已过期');
-            //     } else if (error['status'] === 500) {
-            //         alert('用户名已存在');
-            //     } else {
-            //         alert('其他错误状态码' + error['status']);
-            //     }
-            // });
-            console.info("success");
+            _that.consignmentNotesService.postConsignmentNotes(this.ordersFormModel.value).subscribe((res) => {
+                alert('添加成功');
+                _that.router.navigate(['/admin/consignmentnotes']);
+            }, (error) => {
+                if (error['status'] === 400) {
+                    alert('数据格式错误');
+                } else if (error['status'] === 401) {
+                    alert('Token已过期');
+                } else if (error['status'] === 500) {
+                    alert('服务器异常');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
+            });
         } else {
             console.info("faile");
         }
