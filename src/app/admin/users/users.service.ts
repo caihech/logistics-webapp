@@ -53,4 +53,5 @@ export class UsersService {
     putUser(id, jsonData: Object): Observable<Object> {
         return this.http.put(SharedService.getUrl + '/users/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
+
 }

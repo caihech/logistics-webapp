@@ -113,7 +113,7 @@ export class UserDetailComponent implements OnInit {
             _that.userService.putUser(this.userFormModel.value.id, this.userFormModel.value).subscribe((res) => {
                 alert('修改成功');
                 console.info(res);
-                // _that.router.navigate(['/admin/users']);
+                _that.router.navigate(['/admin/users']);
             }, (error) => {
                 if (error['status'] === 400) {
                     alert('数据格式错误');

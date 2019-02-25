@@ -9,7 +9,7 @@ export class SharedService {
     /**
      * 全局变量
      */
-    static getUrl = 'http://127.0.0.1:8080';
+    static getUrl = 'http://localhost:8087';
 
     /**
      * 获取没有登录 header
