@@ -74,7 +74,6 @@ export class ConsignmentNoteAddComponent implements OnInit {
             idCard: [],
             // 发货人
             consignor: []
-
         });
 
     }
@@ -91,7 +90,6 @@ export class ConsignmentNoteAddComponent implements OnInit {
 
         var _that = this;
         this.ordersFormModel.patchValue({
-            orderNumber: '',
             weight: 0.000,
             volume: 0.00,
             number: 0,
@@ -131,7 +129,7 @@ export class ConsignmentNoteAddComponent implements OnInit {
                 }
             });
         } else {
-            console.info("faile");
+            console.info('faile');
         }
     }
 
