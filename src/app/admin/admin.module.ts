@@ -22,6 +22,7 @@ import {PasswordDialogComponent} from './users/password-dialog/password-dialog.c
 import {ReactiveFormsModule} from '@angular/forms';
 import {JsogService} from 'jsog-typescript';
 import {SharedReg} from '../shared/sharedReg';
+import { PremiumCalculationPipe } from './consignment-notes/pipe/premium-calculation.pipe';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {SharedReg} from '../shared/sharedReg';
         VehiclesComponent,
         VehicleAddComponent,
         VehicleDetailComponent,
-        PasswordDialogComponent
+        PasswordDialogComponent,
+        PremiumCalculationPipe
     ],
     entryComponents: [PasswordDialogComponent],
     providers: [JsogService, SharedReg],
