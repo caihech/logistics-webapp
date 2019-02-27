@@ -49,7 +49,15 @@ export class ConsignmentNotesComponent implements OnInit {
      * @param {number} id
      */
     onDelete(id: number) {
-        alert('删除托运单' + id);
+        var _that = this;
+        _that.consignmentNotesService.deleteConsignmentNotes(id).subscribe(
+            success => {
+                _that.httpGetConsignmentNotes();
+            }, faile => {
+                console.error(faile);
+            }
+        );
+
     }
 
 }
