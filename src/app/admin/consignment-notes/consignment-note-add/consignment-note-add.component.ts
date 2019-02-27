@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ConsignmentNotesService} from '../consignment-notes.service';
 import {Router} from '@angular/router';
+import {debounceTime} from "rxjs/internal/operators";
 
 @Component({
     selector: 'app-consignment-note-add',
@@ -101,10 +102,32 @@ export class ConsignmentNoteAddComponent implements OnInit {
             extractPayment: 0.00,
             shortHaulFreight: 0.00,
             collectionOnDelivery: 0.00,
-            // 合计 不可编辑 计算公式:保费+月结+回单付+现金+提付+短途运费+代收货款
             amount: 0.00,
             printCount: 0
         });
+
+        // 保费计算
+        this.ordersFormModel.controls['insurance'].valueChanges.pipe(
+            debounceTime(500)
+        ).subscribe(
+            value => {
+                _that.ordersFormModel.patchValue({
+                    premium: value * 0.005
+                });
+            }
+        );
+
+        // 合计计算  不可编辑 计算公式:保费+月结+回单付+现金+提付+短途运费+代收货款
+        this.ordersFormModel.valueChanges.pipe(
+            debounceTime(500)
+        ).subscribe(from => {
+            let SUM = (from.premium + from.monthlyStatement + from.receiptPayment +
+                from.cashPayment + from.extractPayment + from.shortHaulFreight + from.collectionOnDelivery);
+            _that.ordersFormModel.patchValue({
+                amount: SUM
+            });
+        });
+
     }
 
     /**
