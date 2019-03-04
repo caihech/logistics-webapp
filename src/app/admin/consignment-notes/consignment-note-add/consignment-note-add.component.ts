@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ConsignmentNotesService} from '../consignment-notes.service';
 import {Router} from '@angular/router';
-import {debounceTime} from "rxjs/internal/operators";
+import {debounceTime} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-consignment-note-add',
@@ -12,6 +12,7 @@ import {debounceTime} from "rxjs/internal/operators";
 export class ConsignmentNoteAddComponent implements OnInit {
 
     ordersFormModel: FormGroup;
+    isLinear = false;
 
     constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router) {
 
@@ -89,7 +90,7 @@ export class ConsignmentNoteAddComponent implements OnInit {
      */
     initWebData() {
 
-        var _that = this;
+        const _that = this;
         this.ordersFormModel.patchValue({
             weight: 0.000,
             volume: 0.00,
@@ -121,7 +122,7 @@ export class ConsignmentNoteAddComponent implements OnInit {
         this.ordersFormModel.valueChanges.pipe(
             debounceTime(500)
         ).subscribe(from => {
-            let SUM = (from.premium + from.monthlyStatement + from.receiptPayment +
+            const SUM = (from.premium + from.monthlyStatement + from.receiptPayment +
                 from.cashPayment + from.extractPayment + from.shortHaulFreight + from.collectionOnDelivery);
             _that.ordersFormModel.patchValue({
                 amount: SUM
@@ -134,7 +135,7 @@ export class ConsignmentNoteAddComponent implements OnInit {
      * 提交表单
      */
     onSubmitForm() {
-        var _that = this;
+        const _that = this;
         console.info(this.ordersFormModel.value);
         if (this.ordersFormModel.valid) {
             _that.consignmentNotesService.postConsignmentNotes(this.ordersFormModel.value).subscribe((res) => {
