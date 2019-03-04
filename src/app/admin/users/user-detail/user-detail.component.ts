@@ -17,7 +17,7 @@ export class UserDetailComponent implements OnInit {
 
     roles = [];
 
-    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService, private router: Router, private route: ActivatedRoute,) {
+    constructor(fb: FormBuilder, private sharedReg: SharedReg, private rolesService: RolesService, private userService: UsersService, private router: Router, private route: ActivatedRoute) {
 
         this.httpGetRoles();
         this.userFormModel = fb.group({
