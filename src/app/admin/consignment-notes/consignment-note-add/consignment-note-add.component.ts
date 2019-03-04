@@ -156,11 +156,4 @@ export class ConsignmentNoteAddComponent implements OnInit {
             console.info('faile');
         }
     }
-
-    /**
-     * 清空表单
-     */
-    onResetForm() {
-    }
-
 }
