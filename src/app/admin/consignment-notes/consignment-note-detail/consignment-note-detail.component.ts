@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ConsignmentNotesService} from '../consignment-notes.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {debounceTime} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-consignment-note-detail',
@@ -10,10 +11,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ConsignmentNoteDetailComponent implements OnInit {
 
-
     ordersFormModel: FormGroup;
+    isLinear = false;
 
-    constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private r: ActivatedRoute) {
+    constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private route: ActivatedRoute) {
 
         this.ordersFormModel = fb.group({
             id: [],
@@ -76,121 +77,120 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             idCard: [],
             // 发货人
             consignor: []
-
         });
 
     }
 
     ngOnInit() {
-        let id = this.r.snapshot.paramMap.get('id');
-        this.initWebData(id);
+        let id = this.route.snapshot.paramMap.get('id');
+        this.initWebDataBy(id);
     }
 
 
     /**
      * 初始化页面数据
      */
-    initWebData(id) {
+    initWebDataBy(id) {
+
         var _that = this;
+
         _that.consignmentNotesService.getConsignmentNoteById(id).subscribe((res) => {
+            console.info(res);
+
             _that.ordersFormModel.patchValue({
                 id: res['id'],
-                // 订单编号 8位 唯一 必填
                 orderNumber: res['orderNumber'],
-                // 站点 必填 40字节
                 station: res['station'],
-                // 货号 必填 20 字节
                 articleNumber: res['articleNumber'],
-                // 托运日期 必填 日期
                 consignmentDate: res['consignmentDate'],
-                // 到货地址
                 goodsAddress: res['goodsAddress'],
-                // 托运人 姓名 必填 10字节
                 shippersName: res['shippersName'],
-                // 托运人 电话 必填 15字节
                 shippersPhone: res['shippersPhone'],
-                // 收货人 姓名 必填 10字节
                 consigneeName: res['consigneeName'],
-                // 收货人 电话 必填 15字节
                 consigneePhone: res['consigneePhone'],
-
-                // 货物名称 必填 80 字节
                 goodsName: res['goodsName'],
-                // 包装 100
                 packaging: res['packaging'],
-                // 重量 必填 0.000
                 weight: res['weight'],
-                // 体积 必填 0.000
                 volume: res['volume'],
-                // 件数 必填 int
                 number: res['number'],
-                // 保险 必填  0.00
                 insurance: res['insurance'],
-                // 保费= 保险*0.005   不可编辑
                 premium: res['premium'],
-                // 月结 不可编辑 公式计算：
                 monthlyStatement: res['monthlyStatement'],
-                // 回单付 0.00
                 receiptPayment: res['receiptPayment'],
-                // 现金付 0.00
                 cashPayment: res['cashPayment'],
-                // 提付 必填 0.00
                 extractPayment: res['extractPayment'],
-                // 短途运费
                 shortHaulFreight: res['shortHaulFreight'],
-                // 代收货款 0.00
-                collectionOnDelivery: res['collectionOnDelivery'],
-                // 合计 不可编辑 计算公式:保费+月结+回单付+现金+提付+短途运费+代收货款
                 amount: res['amount'],
-                // 送货地址 80 字节
+                collectionOnDelivery: res['collectionOnDelivery'],
                 deliveryAddress: res['deliveryAddress'],
-                // remark
                 remark: res['remark'],
-                // 打印次数
                 printCount: res['printCount'],
-                // 提货人
                 consignee: res['consignee'],
-                // 身份证
                 idCard: res['idCard'],
-                // 发货人
-                consignor: res['consignor']
+                consignor: res['consignor'],
+
+                // private User user;
+                // private Vehicle vehicle;
+
+                checkStatus: res['checkStatus'],
+                checkUsername: res['checkUsername'],
+                checkDate: res['checkDate'],
+                checkMessage: res['checkMessage']
+
             });
-        }, (err) => {
+
+
         });
 
 
-    }
+        // 保费计算
+        _that.ordersFormModel.controls['insurance'].valueChanges.pipe(
+            debounceTime(500)
+        ).subscribe(
+            value => {
+                _that.ordersFormModel.patchValue({
+                    premium: value * 0.005
+                });
+            }
+        );
 
+        //  合计计算  不可编辑 计算公式:保费+月结+回单付+现金+提付+短途运费+代收货款
+        _that.ordersFormModel.valueChanges.pipe(
+            debounceTime(500)
+        ).subscribe(from => {
+            const SUM = (from.premium + from.monthlyStatement + from.receiptPayment +
+                from.cashPayment + from.extractPayment + from.shortHaulFreight + from.collectionOnDelivery);
+            _that.ordersFormModel.patchValue({
+                amount: SUM
+            });
+        });
+
+    }
 
     /**
      * 提交表单
      */
-    onSubmitForm() {
-        // var _that = this;
+    onSubmitUpdateForm() {
+        const _that = this;
         console.info(this.ordersFormModel.value);
-        // if (this.ordersFormModel.valid) {
-        //     _that.consignmentNotesService.putConsignmentNotes(this.ordersFormModel.value).subscribe((res) => {
-        //         alert('添加成功');
-        //         _that.router.navigate(['/admin/consignmentnotes']);
-        //     }, (error) => {
-        //         if (error['status'] === 400) {
-        //             alert('数据格式错误');
-        //         } else if (error['status'] === 401) {
-        //             alert('Token已过期');
-        //         } else if (error['status'] === 500) {
-        //             alert('服务器异常');
-        //         } else {
-        //             alert('其他错误状态码' + error['status']);
-        //         }
-        //     });
-        // } else {
-        //     console.info("faile");
-        // }
-    }
-
-    /**
-     * 清空表单
-     */
-    onResetForm() {
+        if (this.ordersFormModel.valid) {
+            _that.consignmentNotesService.putConsignmentNotes(
+                _that.ordersFormModel.value.id, _that.ordersFormModel.value).subscribe((res) => {
+                alert('更新成功');
+                _that.router.navigate(['/admin/consignmentnotes']);
+            }, (error) => {
+                if (error['status'] === 400) {
+                    alert('数据格式错误');
+                } else if (error['status'] === 401) {
+                    alert('Token已过期');
+                } else if (error['status'] === 500) {
+                    alert('服务器异常');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
+            });
+        } else {
+            console.info('faile');
+        }
     }
 }
