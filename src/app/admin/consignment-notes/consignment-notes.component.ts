@@ -50,14 +50,15 @@ export class ConsignmentNotesComponent implements OnInit {
      */
     onDelete(id: number) {
         var _that = this;
-        _that.consignmentNotesService.deleteConsignmentNotes(id).subscribe(
-            success => {
-                _that.httpGetConsignmentNotes();
-            }, faile => {
-                console.error(faile);
-            }
-        );
-
+        if (confirm('确认要删除？')) {
+            _that.consignmentNotesService.deleteConsignmentNotes(id).subscribe(
+                success => {
+                    _that.httpGetConsignmentNotes();
+                }, faile => {
+                    console.error(faile);
+                }
+            );
+        }
     }
 
 }
