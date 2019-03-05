@@ -82,7 +82,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        let id = this.route.snapshot.paramMap.get('id');
+        const id = this.route.snapshot.paramMap.get('id');
         this.initWebDataBy(id);
     }
 
@@ -92,10 +92,11 @@ export class ConsignmentNoteDetailComponent implements OnInit {
      */
     initWebDataBy(id) {
 
-        var _that = this;
+        const _that = this;
 
         _that.consignmentNotesService.getConsignmentNoteById(id).subscribe((res) => {
-            console.info(res);
+            // console.info((res['consignmentDate']);
+            console.info(res['consignmentDate']);
 
             _that.ordersFormModel.patchValue({
                 id: res['id'],
@@ -166,6 +167,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         });
 
     }
+
 
     /**
      * 提交表单
