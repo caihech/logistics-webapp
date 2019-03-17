@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../shared/shared.service';
+import {ConsignmentNotesService} from '../consignment-notes.service';
 
 @Component({
     selector: 'app-consignment-note-audit',
@@ -14,12 +15,13 @@ export class ConsignmentNoteAuditComponent implements OnInit {
 
 
     constructor(private dialogRef: MatDialogRef<ConsignmentNoteAuditComponent>, @Inject(MAT_DIALOG_DATA)
-    private data: ConsignmentNoteAutidDialogData, fb: FormBuilder) {
+    private data: ConsignmentNoteAutidDialogData, fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService) {
 
 
         this.formModel = fb.group({
                 id: [''],
                 orderNumber: [''],
+                checkstatus: [1],
                 checkUsername: [''],
                 checkDate: [''],
                 checkMessage: ['', [Validators.required]]
@@ -41,6 +43,7 @@ export class ConsignmentNoteAuditComponent implements OnInit {
         _that.formModel.patchValue({
             id: data.id,
             orderNumber: data.orderNumber,
+            checkstatus: 1,
             checkUsername: SharedService.getStorageItem('username'),
             checkDate: _that.getDateFromat(new Date().getTime()),
             checkMessage: null
@@ -59,6 +62,30 @@ export class ConsignmentNoteAuditComponent implements OnInit {
     onSubmitForm() {
         var _that = this;
         console.info(_that.formModel.value);
+
+
+        if (_that.formModel.valid) {
+
+            _that.consignmentNotesService.putConsignmentNotesCheckStatus(
+                _that.formModel.value.id, _that.formModel.value).subscribe(success => {
+
+                _that.dialogRef.close(this.data);
+
+            }, error => {
+                if (error['status'] === 400) {
+                    alert('数据格式错误');
+                } else if (error['status'] === 401) {
+                    alert('Token已过期');
+                } else if (error['status'] === 403) {
+                    alert('没有权限');
+                } else if (error['status'] === 500) {
+                    alert('服务器异常');
+                } else {
+                    alert('其他错误状态码' + error['status']);
+                }
+            });
+        }
+
     }
 
 

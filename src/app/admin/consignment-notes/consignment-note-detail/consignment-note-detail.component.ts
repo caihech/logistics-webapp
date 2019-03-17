@@ -78,6 +78,8 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             idCard: [],
             // 发货人
             consignor: []
+
+            , checkStatus: [0]
         });
 
     }
@@ -201,7 +203,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         if (this.ordersFormModel.valid) {
             _that.consignmentNotesService.putConsignmentNotes(
                 _that.ordersFormModel.value.id, _that.ordersFormModel.value).subscribe((res) => {
-                alert('更新成功1');
+                alert('更新成功');
                 _that.router.navigate(['/admin/consignmentnotes']);
             }, (error) => {
                 if (error['status'] === 400) {
@@ -232,7 +234,12 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed.' + result);
+            console.log('The dialog was closed.');
+            if (result) {
+                _that.initWebDataBy(result.id);
+            } else {
+                _that.router.navigate(['/admin/consignmentnotes']);
+            }
         });
 
     }
