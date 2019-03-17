@@ -12,7 +12,6 @@ import {debounceTime} from 'rxjs/internal/operators';
 export class ConsignmentNoteAddComponent implements OnInit {
 
     ordersFormModel: FormGroup;
-    isLinear = false;
 
     constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router) {
 

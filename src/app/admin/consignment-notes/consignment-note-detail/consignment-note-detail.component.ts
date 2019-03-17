@@ -12,7 +12,6 @@ import {debounceTime} from 'rxjs/internal/operators';
 export class ConsignmentNoteDetailComponent implements OnInit {
 
     ordersFormModel: FormGroup;
-    isLinear = false;
 
     constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private route: ActivatedRoute) {
 
@@ -194,5 +193,24 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         } else {
             console.info('faile');
         }
+    }
+
+    onAudit() {
+        console.info("audit");
+        var _that = this;
+        if (confirm('确认后将不可修改!')) {
+            console.info("ok");
+            // _that.consignmentNotesService.deleteConsignmentNotes(id).subscribe(
+            //     success => {
+            //         _that.httpGetConsignmentNotes();
+            //     }, faile => {
+            //         console.error(faile);
+            //     }
+            // );
+        } else {
+            console.info("no");
+        }
+
+
     }
 }

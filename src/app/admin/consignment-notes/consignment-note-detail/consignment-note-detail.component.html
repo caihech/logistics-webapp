@@ -8,19 +8,6 @@
     <br>
 
 
-    <mat-horizontal-stepper [linear]="isLinear"  #stepper>
-        <mat-step>
-            <ng-template matStepLabel>创建</ng-template>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>审核</ng-template>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>完成</ng-template>
-        </mat-step>
-    </mat-horizontal-stepper>
-
-
     <form [formGroup]="ordersFormModel" (submit)="onSubmitUpdateForm()">
 
         <table border="1"
@@ -52,7 +39,7 @@
             <tr>
                 <td style="width: 15%" colspan="2">托运日期<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
-                    <input type="date" style="width: 95%; height: 100%"  formControlName="consignmentDate">
+                    <input type="date" style="width: 95%; height: 100%" formControlName="consignmentDate">
                 </td>
                 <td style="width: 15%" colspan="2">到货地址<span style="color: red">*</span></td>
                 <td style="width: 35%" colspan="4">
@@ -204,6 +191,7 @@
         <br>
         <div class="example-container" style="text-align: center;">
             <button mat-raised-button color="primary" type="submit" [disabled]="!ordersFormModel.valid">保存</button>
+            <button mat-raised-button style="margin-left: 15px" color="primary" (click)="onAudit()">审核</button>
             <button mat-raised-button style="margin-left: 15px" routerLink="/admin/consignmentnotes">返回</button>
         </div>
     </form>
