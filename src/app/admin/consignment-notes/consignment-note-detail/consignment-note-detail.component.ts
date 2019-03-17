@@ -195,7 +195,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
     /**
      * 提交表单
      */
-    onSubmitUpdateForm() {
+    onSubmitUpdateForm(isSubmit) {
         const _that = this;
         console.info(this.ordersFormModel.value);
         if (this.ordersFormModel.valid) {
@@ -220,13 +220,15 @@ export class ConsignmentNoteDetailComponent implements OnInit {
     }
 
     onAudit(): void {
-        console.info('audit');
-
+        var _that = this;
         const dialogRef = this.dialog.open(ConsignmentNoteAuditComponent, {
             width: '400px',
-            height: '330px',
+            height: '380px',
             disableClose: true,
-            data: {id: 0}
+            data: {
+                id: _that.ordersFormModel.value.id,
+                orderNumber: _that.ordersFormModel.value.orderNumber
+            }
         });
 
         dialogRef.afterClosed().subscribe(result => {
