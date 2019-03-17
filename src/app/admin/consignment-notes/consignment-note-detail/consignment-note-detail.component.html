@@ -191,10 +191,10 @@
         <br>
         <div class="example-container" style="text-align: center;">
             <button mat-raised-button color="primary" type="submit" [disabled]="!ordersFormModel.valid">保存</button>
-            <button mat-raised-button style="margin-left: 15px" color="primary" (click)="onAudit()">审核</button>
+
             <button mat-raised-button style="margin-left: 15px" routerLink="/admin/consignmentnotes">返回</button>
         </div>
     </form>
-
+    <button mat-raised-button style="margin-left: 15px" color="primary" (click)="onAudit()">审核</button>
 
 </mat-card>

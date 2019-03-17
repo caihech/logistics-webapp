@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>审核托运单</h2>
+<mat-dialog-content>
+
+  <!--<form [formGrou2p]="formModel" (submit)="onSubmitForm()">-->
+
+    <!--&lt;!&ndash; 当前密码 &ndash;&gt;-->
+    <!--<div class="example-container">-->
+      <!--<mat-form-field>-->
+        <!--<input type="password" matInput placeholder="当前密码" formControlName="currentPassword" maxlength="16"-->
+               <!--required>-->
+        <!--<mat-hint align="end">{{formModel.get('currentPassword').value?.length || 0}}/16</mat-hint>-->
+        <!--<mat-error *ngIf="formModel.get('currentPassword').invalid">{{getCurrentPasswordErrorMessage()}}-->
+        <!--</mat-error>-->
+      <!--</mat-form-field>-->
+    <!--</div>-->
+
+    <!--<div formGroupName="newPasswordGroup">-->
+      <!--<div class="example-container">-->
+        <!--&lt;!&ndash; 新密码 &ndash;&gt;-->
+        <!--<mat-form-field>-->
+          <!--<input type="password" matInput placeholder="新密码" formControlName="newPassword1" maxlength="16"-->
+                 <!--required>-->
+          <!--<mat-hint align="end">{{formModel.get(['newPasswordGroup','newPassword1']).value?.length ||-->
+            <!--0}}/16-->
+          <!--</mat-hint>-->
+          <!--<mat-error *ngIf="formModel.get(['newPasswordGroup','newPassword1']).invalid">-->
+            <!--{{getNewPassword1ErrorMessage()}}-->
+          <!--</mat-error>-->
+        <!--</mat-form-field>-->
+      <!--</div>-->
+
+      <!--&lt;!&ndash; 确认密码 &ndash;&gt;-->
+      <!--<div class="example-container">-->
+        <!--<mat-form-field>-->
+          <!--<input type="password" matInput placeholder="确认密码" formControlName="newPassword2" maxlength="16"-->
+                 <!--required>-->
+          <!--<mat-hint align="end">{{formModel.get(['newPasswordGroup','newPassword2']).value?.length ||-->
+            <!--0}}/16-->
+          <!--</mat-hint>-->
+          <!--<mat-error *ngIf=" formModel.get(['newPasswordGroup','newPassword2']).invalid">-->
+            <!--{{getNewPassword2ErrorMessage()}}-->
+          <!--</mat-error>-->
+
+        <!--</mat-form-field>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div [hidden]="formModel.get(['newPasswordGroup','newPassword2']).untouched">-->
+      <!--<mat-error *ngIf="formModel.get(['newPasswordGroup']).invalid" style="margin-top: -15px">-->
+        <!--{{getNewPasswordGroupErrorMessage()}}-->
+      <!--</mat-error>-->
+    <!--</div>-->
+
+    <div style="margin-top: 15px;text-align: right;">
+      <!--<button mat-raised-button color="primary" type="submit" [disabled]="!formModel.valid">保存</button>-->
+      <button style="margin-left: 10px" mat-raised-button mat-dialog-close>关闭</button>
+    </div>
+
+  <!--</form>-->
+</mat-dialog-content>
+

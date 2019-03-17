@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ConsignmentNotesService} from '../consignment-notes.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {debounceTime} from 'rxjs/internal/operators';
+import {ConsignmentNoteAuditComponent} from '../consignment-note-audit/consignment-note-audit.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-consignment-note-detail',
@@ -13,7 +15,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
 
     ordersFormModel: FormGroup;
 
-    constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private route: ActivatedRoute) {
+    constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) {
 
         this.ordersFormModel = fb.group({
             id: [],
@@ -199,7 +201,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         if (this.ordersFormModel.valid) {
             _that.consignmentNotesService.putConsignmentNotes(
                 _that.ordersFormModel.value.id, _that.ordersFormModel.value).subscribe((res) => {
-                alert('更新成功');
+                alert('更新成功1');
                 _that.router.navigate(['/admin/consignmentnotes']);
             }, (error) => {
                 if (error['status'] === 400) {
@@ -217,22 +219,19 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         }
     }
 
-    onAudit() {
-        console.info("audit");
-        var _that = this;
-        if (confirm('确认后将不可修改!')) {
-            console.info("ok");
-            // _that.consignmentNotesService.deleteConsignmentNotes(id).subscribe(
-            //     success => {
-            //         _that.httpGetConsignmentNotes();
-            //     }, faile => {
-            //         console.error(faile);
-            //     }
-            // );
-        } else {
-            console.info("no");
-        }
+    onAudit(): void {
+        console.info('audit');
 
+        const dialogRef = this.dialog.open(ConsignmentNoteAuditComponent, {
+            width: '400px',
+            height: '330px',
+            disableClose: true,
+            data: {id: 0}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed.' + result);
+        });
 
     }
 }

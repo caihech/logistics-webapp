@@ -14,6 +14,7 @@ import {UserDetailComponent} from './users/user-detail/user-detail.component';
 import {ConsignmentNotesComponent} from './consignment-notes/consignment-notes.component';
 import {ConsignmentNoteAddComponent} from './consignment-notes/consignment-note-add/consignment-note-add.component';
 import {ConsignmentNoteDetailComponent} from './consignment-notes/consignment-note-detail/consignment-note-detail.component';
+import {ConsignmentNoteAuditComponent} from './consignment-notes/consignment-note-audit/consignment-note-audit.component';
 
 import {VehiclesComponent} from './vehicles/vehicles.component';
 import {VehicleAddComponent} from './vehicles/vehicle-add/vehicle-add.component';
@@ -22,7 +23,7 @@ import {PasswordDialogComponent} from './users/password-dialog/password-dialog.c
 import {ReactiveFormsModule} from '@angular/forms';
 import {JsogService} from 'jsog-typescript';
 import {SharedReg} from '../shared/sharedReg';
-import { PremiumCalculationPipe } from './consignment-notes/pipe/premium-calculation.pipe';
+import {PremiumCalculationPipe} from './consignment-notes/pipe/premium-calculation.pipe';
 
 
 @NgModule({
@@ -40,13 +41,14 @@ import { PremiumCalculationPipe } from './consignment-notes/pipe/premium-calcula
         ConsignmentNotesComponent,
         ConsignmentNoteAddComponent,
         ConsignmentNoteDetailComponent,
+        ConsignmentNoteAuditComponent,
         VehiclesComponent,
         VehicleAddComponent,
         VehicleDetailComponent,
         PasswordDialogComponent,
         PremiumCalculationPipe
     ],
-    entryComponents: [PasswordDialogComponent],
+    entryComponents: [PasswordDialogComponent,ConsignmentNoteAuditComponent],
     providers: [JsogService, SharedReg],
     exports: []
 })
