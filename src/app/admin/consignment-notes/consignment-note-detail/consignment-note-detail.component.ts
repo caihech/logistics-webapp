@@ -141,10 +141,11 @@ export class ConsignmentNoteDetailComponent implements OnInit {
 
                 checkStatus: res['checkStatus'],
                 checkUsername: res['checkUsername'],
-                checkDate: res['checkDate'],
+                checkDate: _that.getDateFromat(res['checkDate']),
                 checkMessage: res['checkMessage']
 
-            });
+            })
+            ;
 
 
         });
