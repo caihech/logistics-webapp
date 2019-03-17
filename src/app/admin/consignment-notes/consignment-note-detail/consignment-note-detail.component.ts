@@ -94,15 +94,13 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         const _that = this;
 
         _that.consignmentNotesService.getConsignmentNoteById(id).subscribe((res) => {
-            // console.info((res['consignmentDate']);
-            console.info(res['consignmentDate']);
 
             _that.ordersFormModel.patchValue({
                 id: res['id'],
                 orderNumber: res['orderNumber'],
                 station: res['station'],
                 articleNumber: res['articleNumber'],
-                consignmentDate: res['consignmentDate'],
+                consignmentDate: _that.getDateFromat(res['consignmentDate']),
                 goodsAddress: res['goodsAddress'],
                 shippersName: res['shippersName'],
                 shippersPhone: res['shippersPhone'],
@@ -165,6 +163,30 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             });
         });
 
+    }
+
+    getDateFromat(timeStamp) {
+        let dataTime = '';
+        if (timeStamp) {
+            var tempDate = new Date(timeStamp);
+            let year = tempDate.getFullYear();
+            let month = tempDate.getMonth() + 1;
+            let M1 = '';
+            if (month >= 10) {
+                M1 = month.toString();
+            } else {
+                M1 = '0' + month;
+            }
+            let day = tempDate.getDate();
+            let D1 = '';
+            if (day >= 10) {
+                D1 = day.toString();
+            } else {
+                D1 = '0' + day;
+            }
+            dataTime = year + '-' + M1 + '-' + D1;
+        }
+        return dataTime;
     }
 
 
