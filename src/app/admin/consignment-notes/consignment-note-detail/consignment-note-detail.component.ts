@@ -210,7 +210,8 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             _that.consignmentNotesService.putConsignmentNotes(
                 _that.ordersFormModel.value.id, _that.ordersFormModel.value).subscribe((res) => {
                 alert('更新成功');
-                _that.router.navigate(['/admin/consignmentnotes']);
+                _that.initWebDataBy(res['id']);
+
             }, (error) => {
                 if (error['status'] === 400) {
                     alert('数据格式错误');
