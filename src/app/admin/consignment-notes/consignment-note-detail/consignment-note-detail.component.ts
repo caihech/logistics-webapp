@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material';
 export class ConsignmentNoteDetailComponent implements OnInit {
 
     ordersFormModel: FormGroup;
+    isReadonly = "readonly";
 
     constructor(fb: FormBuilder, private  consignmentNotesService: ConsignmentNotesService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) {
 
@@ -77,9 +78,13 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             // 身份证
             idCard: [],
             // 发货人
-            consignor: []
+            consignor: [],
 
-            , checkStatus: [0]
+            // 审核信息
+            checkStatus: [0],
+            checkUsername: [],
+            checkDate: [],
+            checkMessage: []
         });
 
     }
