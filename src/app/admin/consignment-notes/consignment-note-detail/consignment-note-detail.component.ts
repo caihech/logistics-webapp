@@ -81,10 +81,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
             consignor: [],
 
             // 审核信息
-            checkStatus: [0],
-            checkUsername: [],
-            checkDate: [],
-            checkMessage: []
+            valid: [0]
         });
 
     }
@@ -138,12 +135,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
 
                 // private User user;
                 // private Vehicle vehicle;
-
-                checkStatus: res['checkStatus'],
-                checkUsername: res['checkUsername'],
-                checkDate: _that.getDateFromat(res['checkDate']),
-                checkMessage: res['checkMessage']
-
+                valid:res['valid']
             })
             ;
 
@@ -232,7 +224,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
         var _that = this;
         const dialogRef = this.dialog.open(ConsignmentNoteAuditComponent, {
             width: '400px',
-            height: '380px',
+            height: '350px',
             disableClose: true,
             data: {
                 id: _that.ordersFormModel.value.id,

@@ -23,8 +23,7 @@ export class ConsignmentNoteAuditComponent implements OnInit {
                 orderNumber: [''],
                 checkstatus: [1],
                 checkUsername: [''],
-                checkDate: [''],
-                checkMessage: ['', [Validators.required]]
+                checkDate: ['']
             }
         );
     }
@@ -50,12 +49,6 @@ export class ConsignmentNoteAuditComponent implements OnInit {
         });
     }
 
-
-    getCheckMessageErrorMessage(tempControl: FormControl) {
-        return this.formModel.get('checkMessage').hasError('required') ? '请填写设备备注!' : '';
-    }
-
-
     /**
      * 提交审核表单
      */
@@ -66,8 +59,8 @@ export class ConsignmentNoteAuditComponent implements OnInit {
 
         if (_that.formModel.valid) {
 
-            _that.consignmentNotesService.putConsignmentNotesCheckStatus(
-                _that.formModel.value.id, _that.formModel.value).subscribe(success => {
+            _that.consignmentNotesService.putConsignmentNotesValid(
+                _that.formModel.value.id).subscribe(success => {
 
                 _that.dialogRef.close(this.data);
 

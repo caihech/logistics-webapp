@@ -51,12 +51,12 @@ export class ConsignmentNotesService {
 
 
     /**
-     *put check status修改
+     *put valid 修改
      * @param {Object} jsonData
      * @returns {Observable<Object>}
      */
-    putConsignmentNotesCheckStatus(id, jsonData: Object): Observable<Object> {
-        return this.http.put(SharedService.getUrl + '/consignmentnote/checkstatus/' + id, jsonData, SharedService.getLoginHttpHeader);
+    putConsignmentNotesValid(id): Observable<Object> {
+        return this.http.put(SharedService.getUrl + '/consignmentnote/valid/' + id, SharedService.getLoginHttpHeader);
     }
 
     /**

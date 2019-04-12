@@ -27,18 +27,6 @@
         </div>
 
 
-        <!-- 审核备注 -->
-        <div class="example-container">
-            <mat-form-field>
-                <input matInput  placeholder="审核备注" formControlName="checkMessage" maxlength="25"
-                       required>
-                <mat-hint align="end">{{formModel.get('checkMessage').value?.length || 0}}/25</mat-hint>
-                <mat-error *ngIf="formModel.get('checkMessage').invalid">{{getCheckMessageErrorMessage()}}
-                </mat-error>
-            </mat-form-field>
-        </div>
-
-
         <div style="margin-top: 15px;text-align: right;">
             <button mat-raised-button color="primary" type="submit" [disabled]="!formModel.valid">保存</button>
             <button style="margin-left: 10px" mat-raised-button mat-dialog-close>关闭</button>
