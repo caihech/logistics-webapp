@@ -59,8 +59,11 @@ export class ConsignmentNoteAuditComponent implements OnInit {
 
         if (_that.formModel.valid) {
 
+            var jsonRequestData = {
+                id: _that.formModel.value.id
+            }
             _that.consignmentNotesService.putConsignmentNotesValid(
-                _that.formModel.value.id).subscribe(success => {
+                _that.formModel.value.id, jsonRequestData).subscribe(success => {
 
                 _that.dialogRef.close(this.data);
 

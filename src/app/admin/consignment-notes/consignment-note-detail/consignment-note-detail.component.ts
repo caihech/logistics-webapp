@@ -135,7 +135,7 @@ export class ConsignmentNoteDetailComponent implements OnInit {
 
                 // private User user;
                 // private Vehicle vehicle;
-                valid:res['valid']
+                valid: res['valid']
             })
             ;
 

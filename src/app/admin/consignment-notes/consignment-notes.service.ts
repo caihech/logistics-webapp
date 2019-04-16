@@ -55,8 +55,8 @@ export class ConsignmentNotesService {
      * @param {Object} jsonData
      * @returns {Observable<Object>}
      */
-    putConsignmentNotesValid(id): Observable<Object> {
-        return this.http.put(SharedService.getUrl + '/consignmentnote/valid/' + id, SharedService.getLoginHttpHeader);
+    putConsignmentNotesValid(id, jsonData: Object): Observable<Object> {
+        return this.http.put(SharedService.getUrl + '/consignmentnote/valid/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
 
     /**
