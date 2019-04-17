@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SharedService} from '../../shared/shared.service';
+import {SharedService} from '../shared/shared.service';
 import {Observable} from 'rxjs/index';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 

@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../shared/shared.service';
-import {ConsignmentNotesService} from '../consignment-notes.service';
+import {ConsignmentNotesService} from '../../../service/consignment-notes.service';
 
 @Component({
     selector: 'app-consignment-note-audit',

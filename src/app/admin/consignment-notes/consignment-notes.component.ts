@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ConsignmentNotesService} from './consignment-notes.service';
+import {ConsignmentNotesService} from '../../service/consignment-notes.service';
 
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {VehiclesService} from '../vehicles.service';
-import {ConsignmentNotesService} from '../../consignment-notes/consignment-notes.service';
+import {ConsignmentNotesService} from '../../../service/consignment-notes.service';
 
 @Component({
     selector: 'app-vehicle-detail',

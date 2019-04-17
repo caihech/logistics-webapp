@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {ConsignmentNotesService} from '../consignment-notes.service';
+import {ConsignmentNotesService} from '../../../service/consignment-notes.service';
 import {Router} from '@angular/router';
 import {debounceTime} from 'rxjs/internal/operators';
 
