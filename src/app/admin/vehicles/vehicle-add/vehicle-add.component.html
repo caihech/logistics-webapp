@@ -7,29 +7,21 @@
 
     <mat-card-content>
 
-        <form [formGroup]="userFormModel" (submit)="onSubmitForm()" style="margin-top: 30px;">
+        <form [formGroup]="vehicleFormModel" (submit)="onSubmitForm()" style="margin-top: 30px;">
 
 
             <div class="example-container">
-                <!-- username -->
+                <!-- licensePlate -->
                 <mat-form-field fxFlex="49">
-                    <input matInput placeholder="用户名" formControlName="username" maxlength="16" required>
-                    <mat-hint align="end">{{userFormModel.get('username').value?.length || 0}}/16</mat-hint>
-                    <mat-error *ngIf="userFormModel.get('username').invalid">
-                        {{getUsernameErrorMessage()}}
-                    </mat-error>
+                    <input matInput placeholder="车号/班次" formControlName="licensePlate" required>
                 </mat-form-field>
 
                 <div fxFlex="2"></div>
 
 
-                <!-- password -->
+                <!-- drivingLicenseNumber -->
                 <mat-form-field fxFlex="49">
-                    <input matInput placeholder="密码" formControlName="password" type="password" maxlength="16" required>
-                    <mat-hint align="end">{{userFormModel.get('password').value?.length || 0}}/16</mat-hint>
-                    <mat-error *ngIf="userFormModel.get('password').invalid">
-                        {{getPasswordErrorMessage()}}
-                    </mat-error>
+                    <input matInput placeholder="驾驶证编号" formControlName="drivingLicenseNumber" required>
                 </mat-form-field>
 
 
@@ -37,26 +29,18 @@
 
             <div class="example-container">
 
-                <!-- fullname -->
+                <!-- driverName -->
                 <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8" required>
-                    <mat-hint align="end">{{userFormModel.get('fullname').value?.length || 0}}/8</mat-hint>
-                    <mat-error *ngIf="userFormModel.get('fullname').invalid">
-                        {{getFullnameErrorMessage()}}
-                    </mat-error>
+                    <input matInput placeholder="驾驶员" formControlName="driverName" required>
                 </mat-form-field>
+
 
                 <div fxFlex="2"></div>
 
 
-                <!-- companyName -->
+                <!-- driverPhone -->
                 <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="公司名称" formControlName="companyName" maxlength="16"
-                           required>
-                    <mat-hint align="end">{{userFormModel.get('companyName').value?.length || 0}}/16</mat-hint>
-                    <mat-error *ngIf="userFormModel.get('companyName').invalid">
-                        {{getCompanyNameErrorMessage()}}
-                    </mat-error>
+                    <input matInput placeholder="移动电话" formControlName="driverPhone" required>
                 </mat-form-field>
 
             </div>
@@ -64,123 +48,29 @@
 
             <div class="example-container">
 
-                <!-- mobilephone -->
+                <!-- startDate -->
                 <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="移动电话" formControlName="mobilephone" maxlength="11"
-                           required>
-                    <mat-hint align="end">{{userFormModel.get('mobilephone').value?.length || 0}}/11</mat-hint>
-                    <mat-error *ngIf="userFormModel.get('mobilephone').invalid">
-                        {{getMobilephoneErrorMessage()}}
-                    </mat-error>
+                    <input matInput [matDatepicker]="pickerStartDate" formControlName="startDate" placeholder="发车时间">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStartDate></mat-datepicker>
+
                 </mat-form-field>
 
                 <div fxFlex="2"></div>
 
-                <!-- email -->
+                <!-- endDate -->
                 <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="电子邮箱" formControlName="email" maxlength="32">
-                    <mat-hint align="end">{{userFormModel.get('email').value?.length || 0}}/32</mat-hint>
+                    <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" placeholder="预计到货时间">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
                 </mat-form-field>
 
             </div>
-
-
-            <div class="example-container">
-
-
-                <!-- 角色 -->
-                <mat-form-field fxFlex="49" formGroupName="role">
-                    <mat-select formControlName="id" placeholder="用户角色" required>
-                        <mat-option [value]=item.id *ngFor="let item of  roles">{{item.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <div fxFlex="2"></div>
-
-
-                <!-- 是否有效 -->
-                <mat-form-field fxFlex="49">
-                    <mat-select formControlName="valid" placeholder="用户状态" required>
-                        <mat-option [value]=0>无效</mat-option>
-                        <mat-option [value]=1>有效</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            
+            <div class="example-container" style="text-align: center;">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!vehicleFormModel.valid">保存</button>
+                <button mat-raised-button style="margin-left: 15px" routerLink="/admin/vehicles">返回</button>
             </div>
-
-
-            <div class="example-container">
-
-                <!-- 性别 -->
-                <mat-form-field fxFlex="49">
-                    <mat-select formControlName="sex" placeholder="性别">
-                        <mat-option [value]=0>保密</mat-option>
-                        <mat-option [value]=1>男</mat-option>
-                        <mat-option [value]=2>女</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <div fxFlex="2"></div>
-
-                <!-- birthday -->
-                <mat-form-field fxFlex="49">
-
-                    <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="生日">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-
-                    <!--<input type="text" matInput placeholder="生日" formControlName="birthday" maxlength="16">-->
-                    <!--<mat-hint align="end">{{userFormModel.get('birthday').value?.length || 0}}/16</mat-hint>-->
-                </mat-form-field>
-
-
-            </div>
-
-            <div class="example-container">
-
-                <!-- postalCode -->
-                <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="邮政编码" formControlName="postalCode" maxlength="16">
-                    <mat-hint align="end">{{userFormModel.get('postalCode').value?.length || 0}}/16</mat-hint>
-                </mat-form-field>
-
-                <div fxFlex="2"></div>
-
-                <!-- address -->
-                <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="通讯地址" formControlName="address" maxlength="40">
-                    <mat-hint align=" end">{{userFormModel.get('address').value?.length || 0}}/16</mat-hint>
-                </mat-form-field>
-
-            </div>
-
-
-            <div class="example-container">
-
-                <!-- fax -->
-                <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="传真" formControlName="fax" maxlength="16"
-                    >
-                    <mat-hint align="end">{{userFormModel.get('fax').value?.length || 0}}/16</mat-hint>
-                </mat-form-field>
-
-                <div fxFlex="2"></div>
-
-                <!-- telephone -->
-                <mat-form-field fxFlex="49">
-                    <input type="text" matInput placeholder="办公电话" formControlName="telephone" maxlength="16">
-                    <mat-hint align="end">{{userFormModel.get('telephone').value?.length || 0}}/16</mat-hint>
-                </mat-form-field>
-
-            </div>
-
-
-
-
-            <div class="example-container">
-                <button mat-raised-button color="primary" type="submit" [disabled]="!userFormModel.valid">保存</button>
-                <button mat-raised-button style="float:left;" routerLink="/admin/vehicles">返回</button>
-            </div>
-
 
         </form>
 
