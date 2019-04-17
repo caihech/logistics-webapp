@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {SharedReg} from '../../../shared/sharedReg';
-import {RolesService} from '../../roles/roles.service';
+import {RolesService} from '../../../service/roles.service';
 import {UsersService} from '../users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
