@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
 import {Observable} from 'rxjs/index';
 import {SharedReg} from '../../../shared/sharedReg';
 import {RolesService} from '../../../service/roles.service';
-import {UsersService} from '../users.service';
+import {UsersService} from '../../../service/users.service';
 import {Router} from '@angular/router';
 
 @Component({

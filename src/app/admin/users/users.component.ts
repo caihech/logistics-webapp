@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UsersService} from './users.service';
+import {UsersService} from '../../service/users.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({

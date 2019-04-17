@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/index';
-import {SharedService} from '../../shared/shared.service';
+import {SharedService} from '../shared/shared.service';
 
 @Injectable({
     providedIn: 'root'
@@ -50,6 +50,12 @@ export class UsersService {
     }
 
 
+    /**
+     * 修改用户信息
+     * @param id
+     * @param {Object} jsonData
+     * @returns {Observable<Object>}
+     */
     putUser(id, jsonData: Object): Observable<Object> {
         return this.http.put(SharedService.getUrl + '/users/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
