@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {VehiclesService} from '../vehicles.service';
+import {VehiclesService} from '../../../service/vehicles.service';
 import {Router} from '@angular/router';
 
 @Component({

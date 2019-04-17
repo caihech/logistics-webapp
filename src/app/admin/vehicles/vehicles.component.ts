@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {VehiclesService} from './vehicles.service';
+import {VehiclesService} from '../../service/vehicles.service';
 
 @Component({
     selector: 'app-vehicles',

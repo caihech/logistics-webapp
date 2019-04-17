@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {VehiclesService} from '../vehicles.service';
+import {VehiclesService} from '../../../service/vehicles.service';
 import {ConsignmentNotesService} from '../../../service/consignment-notes.service';
 
 @Component({
