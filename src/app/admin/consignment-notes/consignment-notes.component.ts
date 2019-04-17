@@ -34,7 +34,6 @@ export class ConsignmentNotesComponent implements OnInit {
         var _that = this;
         _that.consignmentNotesService.getConsignmentNotes().subscribe(
             function (res) {
-                console.info(res);
                 _that.consignmentTableDataSource = new MatTableDataSource<Object>(res);
                 _that.consignmentTableDataSource.paginator = _that.paginator;
                 _that.consignmentTableDataSource.sort = _that.sort;
