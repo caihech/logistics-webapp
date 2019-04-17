@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/index';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedReg} from '../../../shared/sharedReg';
 import {RolesService} from '../../../service/roles.service';
 import {UsersService} from '../../../service/users.service';

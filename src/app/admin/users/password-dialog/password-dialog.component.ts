@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/index';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UsersService} from '../../../service/users.service';
 
 @Component({

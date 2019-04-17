@@ -9,7 +9,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class UsersComponent implements OnInit {
 
-    usersTableDisplayedColumns: string[] = ['id', 'username','companyName', 'mobilephone', 'fullname', 'roleName',
+    usersTableDisplayedColumns: string[] = ['id', 'username', 'companyName', 'mobilephone', 'fullname', 'roleName',
         'stateName', 'updateTime', 'edit', 'delete'];
     usersTableDataSource;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,14 +38,6 @@ export class UsersComponent implements OnInit {
                 console.error(error);
             }
         );
-    }
-
-    /**
-     * 修改用户信息通过用户id
-     * @param {number} id
-     */
-    onEdit(id: number) {
-        alert('编辑用户' + id);
     }
 
     /**
