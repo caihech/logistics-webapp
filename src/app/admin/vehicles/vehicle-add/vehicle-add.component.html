@@ -1,206 +1,190 @@
 <mat-card>
 
-    <mat-card-title>添加马单</mat-card-title>
+    <mat-card-title>
+        添加车次
+    </mat-card-title>
     <mat-divider></mat-divider>
 
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>添加车辆信息</ng-template>
-                <mat-form-field style="width:50%;">
-                    <input matInput placeholder="车号/班次" formControlName="firstCtrl" required>L3222
+    <mat-card-content>
+
+        <form [formGroup]="userFormModel" (submit)="onSubmitForm()" style="margin-top: 30px;">
+
+
+            <div class="example-container">
+                <!-- username -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="用户名" formControlName="username" maxlength="16" required>
+                    <mat-hint align="end">{{userFormModel.get('username').value?.length || 0}}/16</mat-hint>
+                    <mat-error *ngIf="userFormModel.get('username').invalid">
+                        {{getUsernameErrorMessage()}}
+                    </mat-error>
                 </mat-form-field>
-                <mat-form-field style="width:50%;">
-                    <input matInput placeholder="发车日期">2018-12-3
+
+                <div fxFlex="2"></div>
+
+
+                <!-- password -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="密码" formControlName="password" type="password" maxlength="16" required>
+                    <mat-hint align="end">{{userFormModel.get('password').value?.length || 0}}/16</mat-hint>
+                    <mat-error *ngIf="userFormModel.get('password').invalid">
+                        {{getPasswordErrorMessage()}}
+                    </mat-error>
                 </mat-form-field>
-                <mat-form-field style="width:50%;">
-                    <input matInput placeholder="运输途中联系方式">2018-12-3
-                </mat-form-field>
 
-                <mat-form-field style="width:50%;">
-                    <input matInput placeholder="预计到达时间">2019-1-13
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>返回</button>
-                    <button mat-button matStepperNext>保存</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>当前装车托运单</ng-template>
-                <mat-form-field>
-                    <input matInput placeholder="托运单/托运人搜索" formControlName="secondCtrl">
-                </mat-form-field>
-                <div class="mat-elevation-z8">
-                    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-
-                        <!-- Checkbox Column -->
-                        <ng-container matColumnDef="select">
-                            <th mat-header-cell *matHeaderCellDef>
-                                <mat-checkbox (change)="$event ? masterToggle() : null"
-                                              [checked]="selection2.hasValue() && isAllSelected()"
-                                              [indeterminate]="selection2.hasValue() && !isAllSelected()">
-                                </mat-checkbox>
-                            </th>
-                            <td mat-cell *matCellDef="let row">
-                                <mat-checkbox (click)="$event.stopPropagation()"
-                                              (change)="$event ? selection2.toggle(row) : null"
-                                              [checked]="selection2.isSelected(row)">
-                                </mat-checkbox>
-                            </td>
-                        </ng-container>
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="position">
-                            <th mat-header-cell *matHeaderCellDef> No.</th>
-                            <td mat-cell *matCellDef="let element"> {{element.position}}</td>
-                        </ng-container>
-
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef> 托运单号</th>
-                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
-                        </ng-container>
-
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="weight">
-                            <th mat-header-cell *matHeaderCellDef> 托运人</th>
-                            <td mat-cell *matCellDef="let element"> {{element.weight}}</td>
-                        </ng-container>
-
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="symbol">
-                            <th mat-header-cell *matHeaderCellDef> 托运日期</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="goodsName">
-                            <th mat-header-cell *matHeaderCellDef> 托运物品</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="weight1">
-                            <th mat-header-cell *matHeaderCellDef> 托运体积/重量</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-                        </ng-container>
-
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-                    </table>
-
-                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                </div>
-                <div>
-                    <button mat-button matStepperPrevious>返回</button>
-                    <button mat-button matStepperNext>保存</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>生成最终马单信息</ng-template>
-            You are now done.
-
-            <div class="container" fxLayout="row" fxLayoutGap="10px">
-                <div class="item item-1" fxFlex="50">
-                    <mat-form-field style="width:100%;">
-                        <input matInput placeholder="车号/班次" required>L3222
-                    </mat-form-field>
-                </div>
-                <div class="item item-2" fxFlex="50">
-
-                    <mat-form-field style="width:100%;">
-                        <input matInput placeholder="发车日期">2018-12-3
-                    </mat-form-field>
-                </div>
-
-                <div class="item item-2" fxFlex="50">
-
-                    <mat-form-field style="width:100%;">
-                        <input matInput placeholder="运输途中联系方式">2018-12-3
-                    </mat-form-field>
-                </div>
-
-                <div class="item item-2" fxFlex="50">
-
-                    <mat-form-field style="width:100%;">
-                        <input matInput placeholder="预计到达时间">2019-1-13
-                    </mat-form-field>
-                </div>
-
-                <div class="item item-2" fxFlex="50">
-                    <mat-form-field appearance="outline">
-                        <mat-label>预计到达时间</mat-label>
-                        <input matInput placeholder="2019-1-13">
-                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                        <mat-hint>时间</mat-hint>
-                    </mat-form-field>
-
-                </div>
 
             </div>
 
-            <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <div class="example-container">
 
-                    <!-- Checkbox Column -->
-                    <!--<ng-container matColumnDef="select">-->
-                    <!--<th mat-header-cell *matHeaderCellDef>-->
-                    <!--<mat-checkbox (change)="$event ? masterToggle() : null"-->
-                    <!--[checked]="selection.hasValue() && isAllSelected()"-->
-                    <!--[indeterminate]="selection.hasValue() && !isAllSelected()">-->
-                    <!--</mat-checkbox>-->
-                    <!--</th>-->
-                    <!--<td mat-cell *matCellDef="let row">-->
-                    <!--<mat-checkbox (click)="$event.stopPropagation()"-->
-                    <!--(change)="$event ? selection.toggle(row) : null"-->
-                    <!--[checked]="selection.isSelected(row)">-->
-                    <!--</mat-checkbox>-->
-                    <!--</td>-->
-                    <!--</ng-container>-->
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <th mat-header-cell *matHeaderCellDef> No.</th>
-                        <td mat-cell *matCellDef="let element"> {{element.position}}</td>
-                    </ng-container>
+                <!-- fullname -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="真实姓名" formControlName="fullname" maxlength="8" required>
+                    <mat-hint align="end">{{userFormModel.get('fullname').value?.length || 0}}/8</mat-hint>
+                    <mat-error *ngIf="userFormModel.get('fullname').invalid">
+                        {{getFullnameErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
 
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name</th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}}</td>
-                    </ng-container>
+                <div fxFlex="2"></div>
 
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <th mat-header-cell *matHeaderCellDef> Weight</th>
-                        <td mat-cell *matCellDef="let element"> {{element.weight}}</td>
-                    </ng-container>
 
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <th mat-header-cell *matHeaderCellDef> Symbol</th>
-                        <td mat-cell *matCellDef="let element"> {{element.symbol}}</td>
-                    </ng-container>
+                <!-- companyName -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="公司名称" formControlName="companyName" maxlength="16"
+                           required>
+                    <mat-hint align="end">{{userFormModel.get('companyName').value?.length || 0}}/16</mat-hint>
+                    <mat-error *ngIf="userFormModel.get('companyName').invalid">
+                        {{getCompanyNameErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
 
-                    <ng-container matColumnDef="star" stickyEnd>
-                        <th mat-header-cell *matHeaderCellDef></th>
-                        <td mat-cell *matCellDef="let element">
-                            <mat-icon>delete</mat-icon>
-                        </td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
             </div>
-            <div>
-                <button mat-button matStepperPrevious>返回</button>
-                <button mat-button (click)="stepper.reset()">保存</button>
-                <button mat-button>打印</button>
+
+
+            <div class="example-container">
+
+                <!-- mobilephone -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="移动电话" formControlName="mobilephone" maxlength="11"
+                           required>
+                    <mat-hint align="end">{{userFormModel.get('mobilephone').value?.length || 0}}/11</mat-hint>
+                    <mat-error *ngIf="userFormModel.get('mobilephone').invalid">
+                        {{getMobilephoneErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+                <!-- email -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="电子邮箱" formControlName="email" maxlength="32">
+                    <mat-hint align="end">{{userFormModel.get('email').value?.length || 0}}/32</mat-hint>
+                </mat-form-field>
+
             </div>
-        </mat-step>
-    </mat-horizontal-stepper>
+
+
+            <div class="example-container">
+
+
+                <!-- 角色 -->
+                <mat-form-field fxFlex="49" formGroupName="role">
+                    <mat-select formControlName="id" placeholder="用户角色" required>
+                        <mat-option [value]=item.id *ngFor="let item of  roles">{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+
+                <!-- 是否有效 -->
+                <mat-form-field fxFlex="49">
+                    <mat-select formControlName="valid" placeholder="用户状态" required>
+                        <mat-option [value]=0>无效</mat-option>
+                        <mat-option [value]=1>有效</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- 性别 -->
+                <mat-form-field fxFlex="49">
+                    <mat-select formControlName="sex" placeholder="性别">
+                        <mat-option [value]=0>保密</mat-option>
+                        <mat-option [value]=1>男</mat-option>
+                        <mat-option [value]=2>女</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+                <!-- birthday -->
+                <mat-form-field fxFlex="49">
+
+                    <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="生日">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                    <!--<input type="text" matInput placeholder="生日" formControlName="birthday" maxlength="16">-->
+                    <!--<mat-hint align="end">{{userFormModel.get('birthday').value?.length || 0}}/16</mat-hint>-->
+                </mat-form-field>
+
+
+            </div>
+
+            <div class="example-container">
+
+                <!-- postalCode -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="邮政编码" formControlName="postalCode" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('postalCode').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+                <!-- address -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="通讯地址" formControlName="address" maxlength="40">
+                    <mat-hint align=" end">{{userFormModel.get('address').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- fax -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="传真" formControlName="fax" maxlength="16"
+                    >
+                    <mat-hint align="end">{{userFormModel.get('fax').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+                <!-- telephone -->
+                <mat-form-field fxFlex="49">
+                    <input type="text" matInput placeholder="办公电话" formControlName="telephone" maxlength="16">
+                    <mat-hint align="end">{{userFormModel.get('telephone').value?.length || 0}}/16</mat-hint>
+                </mat-form-field>
+
+            </div>
+
+
+
+
+            <div class="example-container">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!userFormModel.valid">保存</button>
+                <button mat-raised-button style="float:left;" routerLink="/admin/vehicles">返回</button>
+            </div>
+
+
+        </form>
+
+
+    </mat-card-content>
 
 </mat-card>
