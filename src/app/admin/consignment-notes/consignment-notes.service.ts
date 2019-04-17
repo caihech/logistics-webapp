@@ -59,6 +59,17 @@ export class ConsignmentNotesService {
         return this.http.put(SharedService.getUrl + '/consignmentnote/valid/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
 
+
+    /**
+     *put vehicle 车次关系
+     * @param {Object} jsonData
+     * @returns {Observable<Object>}
+     */
+    putConsignmentNotesVehicle(id, jsonData: Object): Observable<Object> {
+        return this.http.put(SharedService.getUrl + '/consignmentnote/vehicle/' + id, jsonData, SharedService.getLoginHttpHeader);
+    }
+
+
     /**
      * delete 删除托运单
      * @param id
