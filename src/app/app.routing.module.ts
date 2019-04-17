@@ -42,7 +42,7 @@ const routes: Routes = [
 
         {path: 'vehicles', component: VehiclesComponent},
         {path: 'vehicle/add', component: VehicleAddComponent},
-        {path: 'vehicle/detail', component: VehicleDetailComponent}
+        {path: 'vehicle/detail/:id', component: VehicleDetailComponent}
     ]
     },
     {path: 'error-page', component: ErrorPageComponent},

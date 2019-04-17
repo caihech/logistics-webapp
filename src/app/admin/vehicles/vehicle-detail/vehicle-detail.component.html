@@ -1,3 +1,131 @@
-<p>
-  vehicle-detail works!
-</p>
+<form [formGroup]="vehicleFormModel" (submit)="onSubmitUpdateForm()" style="margin-top: 30px;">
+    <mat-card>
+
+        <mat-card-title>
+            编辑车次信息
+        </mat-card-title>
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+
+            <br>
+            <div class="example-container">
+                <!-- id -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="id" formControlName="id" disabled="true">
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+                <!-- licensePlate -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="车号/班次" formControlName="licensePlate" required>
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+
+                <!-- drivingLicenseNumber -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="驾驶证编号" formControlName="drivingLicenseNumber" required>
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+
+                <!-- driverName -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="驾驶员" formControlName="driverName" required>
+                </mat-form-field>
+
+
+                <div fxFlex="2"></div>
+
+
+                <!-- driverPhone -->
+                <mat-form-field fxFlex="49">
+                    <input matInput placeholder="移动电话" formControlName="driverPhone" required>
+                </mat-form-field>
+
+            </div>
+
+
+            <div class="example-container">
+
+                <!-- startDate -->
+                <mat-form-field fxFlex="49">
+                    <input matInput [matDatepicker]="pickerStartDate" formControlName="startDate" placeholder="发车时间">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStartDate></mat-datepicker>
+
+                </mat-form-field>
+
+                <div fxFlex="2"></div>
+
+                <!-- endDate -->
+                <mat-form-field fxFlex="49">
+                    <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" placeholder="预计到货时间">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+
+            <div class="example-container" style="text-align: right;">
+                <button *ngIf="vehicleFormModel.value.valid==0" mat-raised-button color="primary" type="submit"
+                        [disabled]="!vehicleFormModel.valid">保存
+                </button>
+
+                <button *ngIf="vehicleFormModel.value.valid==0" mat-raised-button color="primary"
+                        style="margin-left: 15px" type="button" (click)="onAutid()">
+                    审核
+                </button>
+                <button mat-raised-button style="margin-left: 15px" routerLink="/admin/vehicles">返回</button>
+            </div>
+
+
+        </mat-card-content>
+    </mat-card>
+
+</form>
+<br>
+<mat-card>
+    <mat-card-content>
+
+        <div class="example-container" style="text-align: right;">
+            <button *ngIf="vehicleFormModel.value.valid==0" mat-raised-button color="primary" style="margin-left: 15px">添加托运单</button>
+        </div>
+        <mat-divider></mat-divider>
+
+
+        <table style="width: 100%">
+            <tr>
+                <td>订单编号</td>
+                <td>货号</td>
+                <td>托运日期</td>
+                <td>托运人</td>
+                <td>联系方式</td>
+                <td>移除</td>
+            </tr>
+
+            <tr *ngFor="let temp of consignmentNotesList;">
+                <td>{{temp.orderNumber}}</td>
+                <td>{{temp.articleNumber}}</td>
+                <td>{{temp.consignmentDate|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{temp.shippersName}}</td>
+                <td>{{temp.shippersPhone}}</td>
+                <td>
+                    <button mat-stroked-button color="warn" type="button" (click)="onRemove(temp.id)">
+                        移除
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </mat-card-content>
+</mat-card>
+
