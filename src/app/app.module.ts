@@ -34,7 +34,6 @@ import {LoginService} from './login/login.service';
         AdminModule,
         FormsModule,
         ReactiveFormsModule
-
     ],
     providers: [SharedService, LoginService],
     bootstrap: [AppComponent]

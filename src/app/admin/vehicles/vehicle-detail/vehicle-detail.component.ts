@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {VehiclesService} from '../../../service/vehicles.service';
 import {ConsignmentNotesService} from '../../../service/consignment-notes.service';
+import {VehicleDialogComponent} from '../vehicle-dialog/vehicle-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-vehicle-detail',
@@ -16,7 +18,7 @@ export class VehicleDetailComponent implements OnInit {
     pageid;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private vehiclesService: VehiclesService
-        , private consignmentNotesService: ConsignmentNotesService) {
+        , private consignmentNotesService: ConsignmentNotesService, private dialog: MatDialog, private router: Router) {
 
         this.vehicleFormModel = fb.group({
             id: [],
@@ -32,11 +34,11 @@ export class VehicleDetailComponent implements OnInit {
 
     ngOnInit() {
         this.pageid = this.route.snapshot.paramMap.get('id');
-        this.initUserInfoById(this.pageid);
+        this.initWebInfoById(this.pageid);
     }
 
 
-    initUserInfoById(id) {
+    initWebInfoById(id) {
         var _that = this;
         _that.vehiclesService.getVehiclesById(id).subscribe(
             (res) => {
@@ -65,7 +67,7 @@ export class VehicleDetailComponent implements OnInit {
                 _that.vehicleFormModel.value).subscribe(
                 (res) => {
                     alert('更新成功');
-                    _that.initUserInfoById(_that.vehicleFormModel.value.id);
+                    _that.initWebInfoById(_that.vehicleFormModel.value.id);
                 }, (error) => {
 
                 }
@@ -84,7 +86,7 @@ export class VehicleDetailComponent implements OnInit {
             }
             _that.consignmentNotesService.putConsignmentNotesVehicle(id, jsonData).subscribe(
                 success => {
-                    _that.initUserInfoById(this.pageid);
+                    _that.initWebInfoById(_that.vehicleFormModel.value.id);
                 }, faile => {
                     console.error(faile);
                 }
@@ -103,7 +105,7 @@ export class VehicleDetailComponent implements OnInit {
                 _that.vehicleFormModel.value.id, _that.vehicleFormModel.value).subscribe(
                 (res) => {
                     alert('更新成功');
-                    _that.initUserInfoById(res['id']);
+                    _that.initWebInfoById(_that.vehicleFormModel.value.id);
 
                 }, (error) => {
                     if (error['status'] === 400) {
@@ -119,6 +121,31 @@ export class VehicleDetailComponent implements OnInit {
         } else {
             console.info('faile');
         }
+    }
+
+
+    /**
+     * 弹出对话框
+     */
+    onShowVehicleDialog(): void {
+        var _that = this;
+        const dialogRef = this.dialog.open(VehicleDialogComponent, {
+            width: '600px',
+            height: '500px',
+            disableClose: true,
+            data: {
+                id: _that.pageid
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed.');
+            if (result) {
+                _that.initWebInfoById(_that.vehicleFormModel.value.id);
+            } else {
+                _that.router.navigate(['/admin/vehicles']);
+            }
+        });
     }
 
 }
