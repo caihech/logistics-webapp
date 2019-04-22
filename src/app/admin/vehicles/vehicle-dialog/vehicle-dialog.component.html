@@ -1,3 +1,22 @@
-<p>
-  vehicle-dialog works!
-</p>
+<h2 mat-dialog-title>添加托运单</h2>
+<mat-dialog-content>
+
+
+    <mat-list>
+        <mat-list-item *ngFor="let temp of consignmentNotesList">
+            <mat-checkbox class="example-margin" [(ngModel)]="temp.selected">{{temp.id}} * {{temp.orderNumber}}
+            </mat-checkbox>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+
+
+    <div style="margin-top: 15px;text-align: right;">
+
+        <button (click)="onCheckSubmit()" mat-raised-button color="primary" style="margin-left: 15px">保存</button>
+
+        <button style="margin-left: 10px" mat-raised-button mat-dialog-close>关闭</button>
+    </div>
+
+</mat-dialog-content>
+
