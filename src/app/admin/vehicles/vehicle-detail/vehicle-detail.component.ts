@@ -98,8 +98,6 @@ export class VehicleDetailComponent implements OnInit {
      */
     onSubmitUpdateForm() {
         var _that = this;
-
-        console.info(_that.vehicleFormModel.value);
         if (_that.vehicleFormModel.valid) {
             _that.vehiclesService.putVehicles(
                 _that.vehicleFormModel.value.id, _that.vehicleFormModel.value).subscribe(

@@ -29,7 +29,6 @@ export class VehiclesComponent implements OnInit {
         var _that = this;
         _that.vehiclesService.getVehicles().subscribe(
             function (res) {
-                console.info(res);
                 _that.vehiclesTableDataSource = new MatTableDataSource<Object>(res);
                 _that.vehiclesTableDataSource.paginator = _that.paginator;
                 _that.vehiclesTableDataSource.sort = _that.sort;
