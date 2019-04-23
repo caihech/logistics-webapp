@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/index';
-import {SharedService} from '../shared/shared.service';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/index';
+import { SharedService } from '../shared/shared.service';
 
 @Injectable({
     providedIn: 'root'
@@ -59,4 +59,15 @@ export class UsersService {
     putUser(id, jsonData: Object): Observable<Object> {
         return this.http.put(SharedService.getUrl + '/users/' + id, jsonData, SharedService.getLoginHttpHeader);
     }
+
+
+    /**
+     * 通过主键删除用户
+     * @param id
+     * @returns {Observable<Object>}
+     */
+    deleteUser(id): Observable<Object> {
+        return this.http.delete(SharedService.getUrl + '/users/' + id, SharedService.getLoginHttpHeader);
+    }
+
 }

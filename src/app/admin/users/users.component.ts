@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {UsersService} from '../../service/users.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UsersService } from '../../service/users.service';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
     selector: 'app-users',
@@ -10,7 +10,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 export class UsersComponent implements OnInit {
 
     usersTableDisplayedColumns: string[] = ['id', 'username', 'companyName', 'mobilephone', 'fullname', 'roleName',
-        'stateName', 'updateTime', 'edit', 'delete'];
+        'stateName', 'updateTime', 'delete', 'edit'];
     usersTableDataSource;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -45,6 +45,13 @@ export class UsersComponent implements OnInit {
      * @param {number} id
      */
     onDelete(id: number) {
-        alert('删除用户' + id);
+        var _that = this;
+        _that.usersService.deleteUser(id).subscribe(
+            (res) => {
+                _that.httpGetUsers();
+            },
+            (error) => {
+
+            });
     }
 }
