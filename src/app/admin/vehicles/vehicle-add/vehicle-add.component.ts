@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {VehiclesService} from '../../../service/vehicles.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { VehiclesService } from '../../../service/vehicles.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-vehicle-add',
@@ -13,7 +14,7 @@ export class VehicleAddComponent implements OnInit {
 
     vehicleFormModel: FormGroup;
 
-    constructor(private fb: FormBuilder, private vehiclesService: VehiclesService, private router: Router) {
+    constructor(private fb: FormBuilder, private vehiclesService: VehiclesService, private router: Router, private snackBar: MatSnackBar) {
 
         this.vehicleFormModel = fb.group({
             licensePlate: [],
@@ -38,20 +39,20 @@ export class VehicleAddComponent implements OnInit {
         if (this.vehicleFormModel.valid) {
             _that.vehiclesService.postVehicles(_that.vehicleFormModel.value).subscribe(
                 (res) => {
-                    alert('添加成功');
+                    _that.snackBar.open("添加成功", "提示", { duration: 2000 });
                     _that.router.navigate(['/admin/vehicles']);
                 },
                 (error) => {
                     if (error['status'] === 400) {
-                        alert('数据格式错误');
+                        _that.snackBar.open("数据格式错误", "提示", { duration: 2000 });
                     } else if (error['status'] === 401) {
-                        alert('Token已过期');
+                        _that.snackBar.open("Token已过期", "提示", { duration: 2000 });
                     } else if (error['status'] === 403) {
-                        alert('您权限不够');
+                        _that.snackBar.open("您权限不够", "提示", { duration: 2000 });
                     } else if (error['status'] === 500) {
-                        alert('服务器异常');
+                        _that.snackBar.open("服务器异常", "提示", { duration: 2000 });
                     } else {
-                        alert('其他错误状态码' + error['status']);
+                        _that.snackBar.open("其他错误状态码" + error['status'], "提示", { duration: 2000 });
                     }
                 });
         }
