@@ -59,6 +59,15 @@ export class VehiclesService {
     }
 
     /**
+     * 测试添加批量托运单
+     * @param {Object} jsonData
+     * @returns {Observable<Object>}
+     */
+    putVehiclescCnsignmentNotes(id, jsonData: Object): Observable<Object> {
+        return this.http.put(SharedService.getUrl + '/vehicle/consignmentnotes/' + id, jsonData, SharedService.getLoginHttpHeader);
+    }
+
+    /**
      * 通过主键删除车次
      * @param id
      * @returns {Observable<Object>}

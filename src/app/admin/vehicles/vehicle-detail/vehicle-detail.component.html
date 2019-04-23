@@ -117,7 +117,7 @@
                 <td>{{temp.shippersName}}</td>
                 <td>{{temp.shippersPhone}}</td>
                 <td>
-                    <button mat-stroked-button color="warn" type="button" (click)="onRemove(temp.id)">
+                    <button *ngIf="vehicleFormModel.value.valid==0" mat-stroked-button color="warn" type="button" (click)="onRemove(temp.id)">
                         移除
                     </button>
                 </td>
