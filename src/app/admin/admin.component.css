@@ -1,39 +1,20 @@
-.app-header {
-    position: fixed;
-    top: 0;
-    z-index: 2;
+.admin-container {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 }
 
-.app-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding-top: 64px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+.admin-icon {
+  padding: 0 14px;
 }
 
-.toolbar-seprator {
-    flex: 1 1 auto;
+.admin-spacer {
+  flex: 1 1 auto;
 }
 
-.app-nav {
-    position: absolute;
-    /*height: calc(100vh - 64px);*/
-    height: 100%;
-    padding-top: 64px;
-    width: 250px;
-}
 
-.app-content {
-    position: absolute;
-    padding: 20px;
-    width: calc(100% - 290px);
-}
 
-.active {
-    color: #3f51b5;
-}
 
 .mat-list-item-focus {
-    color: #3f51b5;
+  color: #3f51b5;
 }

@@ -1,54 +1,52 @@
-<!-- header -->
-<mat-toolbar class="app-header mat-elevation-z6" color="primary">
+<div fxLayout="row">
+    <div fxFlex="15" class="mat-elevation-z6">
+        <mat-toolbar color="primary"></mat-toolbar>
 
-    <button mat-button  style="font-size:20px">
-        后台系统
-    </button>
+        <mat-drawer #drawer mode="side" [(opened)]="openedNavBar">
+            <mat-nav-list>
+                <a [routerLink]="['/admin']" mat-list-item>首页</a>
+                <mat-divider></mat-divider>
+                <a [routerLink]="['/admin/users']" mat-list-item>用户管理</a>
+                <mat-divider></mat-divider>
+                <a [routerLink]="['/admin/consignmentnotes']" mat-list-item>托运单管理</a>
+                <mat-divider></mat-divider>
+                <a [routerLink]="['/admin/vehicles']" mat-list-item>车次管理</a>
+                <mat-divider></mat-divider>
+            </mat-nav-list>
+        </mat-drawer>
+    </div>
 
+    <div fxFlex="85">
 
-    <span class="toolbar-seprator"></span>
-    <button mat-button [matMenuTriggerFor]="menu" style="font-size: 16px;float: right;">
-        <mat-icon>person</mat-icon>
-        {{username}}
-    </button>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span>后台系统</span>
+                <span class="admin-spacer"></span>
 
-    <!--<button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">person</i>{{username}}</button>-->
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item style="font-size: 16px;"  (click)="openPasswordDialog()">
-            <mat-icon>assignment</mat-icon>
-            修改密码
-        </button>
-        <hr>
-        <button mat-menu-item style="font-size: 16px;" (click)="onExitLogin()">
-            <mat-icon>reply</mat-icon>
-            退出
-        </button>
-    </mat-menu>
+                <button mat-button [matMenuTriggerFor]="menu" class="admin-icon">
+                    <mat-icon>person</mat-icon>
+                    {{username}}
+                </button>
 
-</mat-toolbar>
+                <mat-menu #menu="matMenu" class="admin-icon">
+                    <button mat-menu-item style="font-size: 16px;" (click)="openPasswordDialog()">
+                        <mat-icon>assignment</mat-icon>
+                        修改密码
+                    </button>
+                    <hr>
+                    <button mat-menu-item style="font-size: 16px;" (click)="onExitLogin()">
+                        <mat-icon>reply</mat-icon>
+                        退出
+                    </button>
+                </mat-menu>
 
-<!-- main -->
-<mat-drawer-container class="app-container">
+            </mat-toolbar-row>
 
-    <!-- nav -->
-    <mat-drawer #drawer class="app-nav mat-elevation-z6" mode="side"  [(opened)]="openedNavBar">
-        <mat-nav-list>
-            <a [routerLink]="['/admin']" mat-list-item>首页</a>
-            <mat-divider></mat-divider>
-            <a [routerLink]="['/admin/users']" mat-list-item>用户管理</a>
-            <mat-divider></mat-divider>
-            <a [routerLink]="['/admin/consignmentnotes']" mat-list-item>托运单管理</a>
-            <mat-divider></mat-divider>
-            <a [routerLink]="['/admin/vehicles']" mat-list-item>车次管理</a>
-            <mat-divider></mat-divider>
-        </mat-nav-list>
-    </mat-drawer>
+        </mat-toolbar>
 
-    <!-- content -->
-    <mat-drawer-content class="app-content">
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
+        <div style="margin: 15px">
+            <router-outlet></router-outlet>
+        </div>
 
-</mat-drawer-container>
-
-
+    </div>
+</div>
