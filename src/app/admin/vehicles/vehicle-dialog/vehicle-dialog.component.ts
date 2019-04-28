@@ -13,7 +13,7 @@ import { VehicleDetailComponent } from '../vehicle-detail/vehicle-detail.compone
 })
 export class VehicleDialogComponent implements OnInit {
 
-    consignmentNotesList: [] = [];
+    consignmentNotesList = [];
 
     constructor(private dialogRef: MatDialogRef<VehicleDetailComponent>, @Inject(MAT_DIALOG_DATA) private data: VehicleDialogData
         , private consignmentNotesService: ConsignmentNotesService, private vehiclesService: VehiclesService, private snackBar: MatSnackBar) {
