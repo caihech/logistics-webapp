@@ -13,8 +13,6 @@
 }
 
 
-
-
-.mat-list-item-focus {
-  color: #3f51b5;
+.router-link-active{
+  color:blue;
 }

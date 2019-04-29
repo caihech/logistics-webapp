@@ -2,18 +2,14 @@
     <div fxFlex="15" class="mat-elevation-z6">
         <mat-toolbar color="primary"></mat-toolbar>
 
-        <mat-drawer #drawer mode="side" [(opened)]="openedNavBar">
-            <mat-nav-list>
-                <a [routerLink]="['/admin']" mat-list-item>首页</a>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="nav.link" *ngFor="let nav of navList" routerLinkActive="router-link-active">
+                {{ nav.name }}
                 <mat-divider></mat-divider>
-                <a [routerLink]="['/admin/users']" mat-list-item>用户管理</a>
-                <mat-divider></mat-divider>
-                <a [routerLink]="['/admin/consignmentnotes']" mat-list-item>托运单管理</a>
-                <mat-divider></mat-divider>
-                <a [routerLink]="['/admin/vehicles']" mat-list-item>车次管理</a>
-                <mat-divider></mat-divider>
-            </mat-nav-list>
-        </mat-drawer>
+            </a>
+        </mat-nav-list>
+
+
     </div>
 
     <div fxFlex="85">

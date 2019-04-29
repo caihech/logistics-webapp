@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {SharedService} from '../shared/shared.service';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {PasswordDialogComponent} from '../admin/users/password-dialog/password-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { PasswordDialogComponent } from '../admin/users/password-dialog/password-dialog.component';
 
 @Component({
     selector: 'app-admin',
@@ -13,6 +13,12 @@ export class AdminComponent implements OnInit {
 
     openedNavBar = true;
     username: String = '';
+
+    navList = [{ name: '首页', link: '/admin/home' }
+        , { name: '用户管理', link: '/admin/users' }
+        , { name: '托运单管理', link: '/admin/consignmentnotes' }
+        , { name: '车次管理', link: '/admin/vehicles' }
+    ];
 
 
     constructor(private router: Router, private dialog: MatDialog) {
@@ -60,7 +66,7 @@ export class AdminComponent implements OnInit {
             width: '400px',
             height: '330px',
             disableClose: true,
-            data: {username: this.username}
+            data: { username: this.username }
         });
 
         dialogRef.afterClosed().subscribe(result => {
